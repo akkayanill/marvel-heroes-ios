@@ -19,8 +19,8 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-//        let vc = ViewController)
-//        navigationController.pushViewController(vc, animated: true)
+        let vc = HeroListViewController()
+        navigationController.pushViewController(vc, animated: true)
     }
     
 }

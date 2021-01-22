@@ -21,6 +21,8 @@
 		A515773025BB58AB007B54B3 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515772F25BB58AB007B54B3 /* AppFont.swift */; };
 		A515773525BB5A0B007B54B3 /* HeroListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515773425BB5A0B007B54B3 /* HeroListViewModel.swift */; };
 		A515773D25BB5B11007B54B3 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515773C25BB5B11007B54B3 /* CollectionView.swift */; };
+		A5804B3025BB606000A33E8E /* HeroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */; };
+		A5804B3525BB609500A33E8E /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B3425BB609500A33E8E /* BaseCell.swift */; };
 		A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */; };
 		A5CF8A2325BB48B800DAC2FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */; };
 		A5CF8A2525BB48B800DAC2FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2425BB48B800DAC2FA /* ViewController.swift */; };
@@ -72,6 +74,8 @@
 		A515772F25BB58AB007B54B3 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		A515773425BB5A0B007B54B3 /* HeroListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListViewModel.swift; sourceTree = "<group>"; };
 		A515773C25BB5B11007B54B3 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCollectionViewCell.swift; sourceTree = "<group>"; };
+		A5804B3425BB609500A33E8E /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A5CF8A1D25BB48B800DAC2FA /* marvel-heroes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "marvel-heroes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				A515770C25BB5720007B54B3 /* HeroListViewController.swift */,
+				A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 				A515771A25BB578A007B54B3 /* NavigationController.swift */,
 				A515772F25BB58AB007B54B3 /* AppFont.swift */,
 				A515773C25BB5B11007B54B3 /* CollectionView.swift */,
+				A5804B3425BB609500A33E8E /* BaseCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -514,6 +520,8 @@
 				A515771B25BB578A007B54B3 /* NavigationController.swift in Sources */,
 				A515773025BB58AB007B54B3 /* AppFont.swift in Sources */,
 				A5CF8A5A25BB535400DAC2FA /* AppCoordinator.swift in Sources */,
+				A5804B3025BB606000A33E8E /* HeroCollectionViewCell.swift in Sources */,
+				A5804B3525BB609500A33E8E /* BaseCell.swift in Sources */,
 				A515773525BB5A0B007B54B3 /* HeroListViewModel.swift in Sources */,
 				A5CF8A2525BB48B800DAC2FA /* ViewController.swift in Sources */,
 				A5CF8A6225BB53B400DAC2FA /* Coordinator.swift in Sources */,
