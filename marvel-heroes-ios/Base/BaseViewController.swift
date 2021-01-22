@@ -39,9 +39,9 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol, NVActivi
     func layoutViews() {}
     
     
-    @objc func dismissVC() {
-        self.view.endEditing(true)
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @objc func dismissVC() {
+//        self.view.endEditing(true)
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
 }
