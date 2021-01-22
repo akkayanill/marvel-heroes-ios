@@ -6,7 +6,7 @@ target 'marvel-heroes-ios' do
   use_frameworks!
 
   # Pods for marvel-heroes-ios
-pod 'Alamofire', '~> 4.0'
+  pod 'Alamofire', '~> 4.0'
   pod 'SwiftyJSON'
   pod 'SwifterSwift'
   pod 'Localize-Swift'

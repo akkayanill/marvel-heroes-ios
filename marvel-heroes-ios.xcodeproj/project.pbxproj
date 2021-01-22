@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		A5CF8A2D25BB48BA00DAC2FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CF8A2B25BB48BA00DAC2FA /* LaunchScreen.storyboard */; };
 		A5CF8A3825BB48BA00DAC2FA /* marvel_heroes_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A3725BB48BA00DAC2FA /* marvel_heroes_iosTests.swift */; };
 		A5CF8A4325BB48BA00DAC2FA /* marvel_heroes_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A4225BB48BA00DAC2FA /* marvel_heroes_iosUITests.swift */; };
+		A5CF8A5A25BB535400DAC2FA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A5925BB535400DAC2FA /* AppCoordinator.swift */; };
+		A5CF8A6225BB53B400DAC2FA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A6125BB53B400DAC2FA /* Coordinator.swift */; };
 		F90092E267D7CB53CCE7EEA8 /* Pods_marvel_heroes_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9442F0AEDBC5C5C5DBDCA4F5 /* Pods_marvel_heroes_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		A5CF8A3E25BB48BA00DAC2FA /* marvel-heroes-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "marvel-heroes-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CF8A4225BB48BA00DAC2FA /* marvel_heroes_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = marvel_heroes_iosUITests.swift; sourceTree = "<group>"; };
 		A5CF8A4425BB48BA00DAC2FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5CF8A5925BB535400DAC2FA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		A5CF8A6125BB53B400DAC2FA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		ED8FFB5FF5DB1E6070FE738B /* Pods-marvel-heroes-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel-heroes-ios.debug.xcconfig"; path = "Target Support Files/Pods-marvel-heroes-ios/Pods-marvel-heroes-ios.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,7 +105,6 @@
 				2D46217ACA7D0CC7A6380F88 /* Pods-marvel-heroes-iosTests.debug.xcconfig */,
 				937394EF8CB8385E8B194FC6 /* Pods-marvel-heroes-iosTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -130,6 +133,9 @@
 		A5CF8A1F25BB48B800DAC2FA /* marvel-heroes-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A5CF8A5825BB52CE00DAC2FA /* NetworkLayer */,
+				A5CF8A5725BB52C900DAC2FA /* Model */,
+				A5CF8A5625BB52C100DAC2FA /* ViewModel */,
 				A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */,
 				A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */,
 				A5CF8A2425BB48B800DAC2FA /* ViewController.swift */,
@@ -137,6 +143,8 @@
 				A5CF8A2925BB48BA00DAC2FA /* Assets.xcassets */,
 				A5CF8A2B25BB48BA00DAC2FA /* LaunchScreen.storyboard */,
 				A5CF8A2E25BB48BA00DAC2FA /* Info.plist */,
+				A5CF8A5925BB535400DAC2FA /* AppCoordinator.swift */,
+				A5CF8A6125BB53B400DAC2FA /* Coordinator.swift */,
 			);
 			path = "marvel-heroes-ios";
 			sourceTree = "<group>";
@@ -157,6 +165,27 @@
 				A5CF8A4425BB48BA00DAC2FA /* Info.plist */,
 			);
 			path = "marvel-heroes-iosUITests";
+			sourceTree = "<group>";
+		};
+		A5CF8A5625BB52C100DAC2FA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A5CF8A5725BB52C900DAC2FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5CF8A5825BB52CE00DAC2FA /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
 		FB3B5A15BC9E30A2CC024D22 /* Frameworks */ = {
@@ -407,7 +436,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CF8A5A25BB535400DAC2FA /* AppCoordinator.swift in Sources */,
 				A5CF8A2525BB48B800DAC2FA /* ViewController.swift in Sources */,
+				A5CF8A6225BB53B400DAC2FA /* Coordinator.swift in Sources */,
 				A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */,
 				A5CF8A2325BB48B800DAC2FA /* SceneDelegate.swift in Sources */,
 			);
