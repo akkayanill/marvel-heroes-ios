@@ -25,6 +25,7 @@
 		A5804B3525BB609500A33E8E /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B3425BB609500A33E8E /* BaseCell.swift */; };
 		A5804B3A25BB649600A33E8E /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B3925BB649600A33E8E /* Label.swift */; };
 		A5804B4125BC376100A33E8E /* LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B4025BC376100A33E8E /* LayoutExtension.swift */; };
+		A5804B4825BC506500A33E8E /* HeroListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B4725BC506500A33E8E /* HeroListCoordinator.swift */; };
 		A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */; };
 		A5CF8A2325BB48B800DAC2FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */; };
 		A5CF8A2525BB48B800DAC2FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2425BB48B800DAC2FA /* ViewController.swift */; };
@@ -80,6 +81,7 @@
 		A5804B3425BB609500A33E8E /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A5804B3925BB649600A33E8E /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		A5804B4025BC376100A33E8E /* LayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutExtension.swift; sourceTree = "<group>"; };
+		A5804B4725BC506500A33E8E /* HeroListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListCoordinator.swift; sourceTree = "<group>"; };
 		A5CF8A1D25BB48B800DAC2FA /* marvel-heroes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "marvel-heroes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		A515770A25BB5699007B54B3 /* HeroList */ = {
 			isa = PBXGroup;
 			children = (
+				A5804B4625BC505C00A33E8E /* Coordinator */,
 				A515770B25BB56A4007B54B3 /* Views */,
 				A5CF8A5625BB52C100DAC2FA /* ViewModel */,
 			);
@@ -183,6 +186,14 @@
 				A515772225BB586E007B54B3 /* Rubik-SemiBold.ttf */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5804B4625BC505C00A33E8E /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A5804B4725BC506500A33E8E /* HeroListCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		A5CF8A1425BB48B800DAC2FA = {
@@ -524,6 +535,7 @@
 			files = (
 				A515770D25BB5720007B54B3 /* HeroListViewController.swift in Sources */,
 				A515771B25BB578A007B54B3 /* NavigationController.swift in Sources */,
+				A5804B4825BC506500A33E8E /* HeroListCoordinator.swift in Sources */,
 				A515773025BB58AB007B54B3 /* AppFont.swift in Sources */,
 				A5804B4125BC376100A33E8E /* LayoutExtension.swift in Sources */,
 				A5CF8A5A25BB535400DAC2FA /* AppCoordinator.swift in Sources */,
