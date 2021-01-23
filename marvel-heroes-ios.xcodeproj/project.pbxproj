@@ -23,6 +23,8 @@
 		A515773D25BB5B11007B54B3 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515773C25BB5B11007B54B3 /* CollectionView.swift */; };
 		A5804B3025BB606000A33E8E /* HeroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */; };
 		A5804B3525BB609500A33E8E /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B3425BB609500A33E8E /* BaseCell.swift */; };
+		A5804B3A25BB649600A33E8E /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B3925BB649600A33E8E /* Label.swift */; };
+		A5804B4125BC376100A33E8E /* LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B4025BC376100A33E8E /* LayoutExtension.swift */; };
 		A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */; };
 		A5CF8A2325BB48B800DAC2FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */; };
 		A5CF8A2525BB48B800DAC2FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2425BB48B800DAC2FA /* ViewController.swift */; };
@@ -76,6 +78,8 @@
 		A515773C25BB5B11007B54B3 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5804B3425BB609500A33E8E /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		A5804B3925BB649600A33E8E /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		A5804B4025BC376100A33E8E /* LayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutExtension.swift; sourceTree = "<group>"; };
 		A5CF8A1D25BB48B800DAC2FA /* marvel-heroes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "marvel-heroes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 				A515772F25BB58AB007B54B3 /* AppFont.swift */,
 				A515773C25BB5B11007B54B3 /* CollectionView.swift */,
 				A5804B3425BB609500A33E8E /* BaseCell.swift */,
+				A5804B3925BB649600A33E8E /* Label.swift */,
+				A5804B4025BC376100A33E8E /* LayoutExtension.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -519,6 +525,7 @@
 				A515770D25BB5720007B54B3 /* HeroListViewController.swift in Sources */,
 				A515771B25BB578A007B54B3 /* NavigationController.swift in Sources */,
 				A515773025BB58AB007B54B3 /* AppFont.swift in Sources */,
+				A5804B4125BC376100A33E8E /* LayoutExtension.swift in Sources */,
 				A5CF8A5A25BB535400DAC2FA /* AppCoordinator.swift in Sources */,
 				A5804B3025BB606000A33E8E /* HeroCollectionViewCell.swift in Sources */,
 				A5804B3525BB609500A33E8E /* BaseCell.swift in Sources */,
@@ -528,6 +535,7 @@
 				A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */,
 				A515771525BB5734007B54B3 /* BaseViewController.swift in Sources */,
 				A515773D25BB5B11007B54B3 /* CollectionView.swift in Sources */,
+				A5804B3A25BB649600A33E8E /* Label.swift in Sources */,
 				A5CF8A2325BB48B800DAC2FA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
