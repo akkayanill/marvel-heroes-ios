@@ -9,11 +9,13 @@ import Foundation
 import UIKit
 
 protocol HeroListCoordinatorProtocol: class {
-    func showDetailViewController()
+    func showDetailViewController(_ character: MarvelCharacter)
     func backToHeroList()
 }
 
-class HeroListCoordiantor: Coordinator, HeroListCoordinatorProtocol {
+
+
+final class HeroListCoordiantor: Coordinator, HeroListCoordinatorProtocol {
     
     var childCoordinators = [Coordinator]()
     
@@ -25,18 +27,18 @@ class HeroListCoordiantor: Coordinator, HeroListCoordinatorProtocol {
     
     func start() {
         let vc = HeroListViewController()
+        vc.coordinatorDelegate = self
         self.navigationController.pushViewController(vc, animated: false)
     }
     
-    
-    //TODO: - add model or id argument to func.
-    func showDetailViewController() {
-//        let vc =
-//        self.navigationController.pushViewController(vc, animated: true)
+    func showDetailViewController(_ character: MarvelCharacter) {
+        let vc = HeroDetailViewController()
+        vc.viewModel.character = character
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     func backToHeroList() {
-        
+        navigationController.popViewController(animated: true)
     }
 }
 
