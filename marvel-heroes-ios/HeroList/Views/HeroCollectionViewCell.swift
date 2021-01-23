@@ -58,6 +58,7 @@ class HeroCollectionViewCell: BaseCell {
         cornerRadius = 10
         borderWidth = 1.5
         borderColor = UIColor(hexString: "#199CFF")!
+        imageView.cornerRadius = 12
     }
     
     required init?(coder: NSCoder) {
@@ -75,25 +76,37 @@ class HeroCollectionViewCell: BaseCell {
     }
     
     
+    override var isHighlighted: Bool{
+            didSet{
+                if isHighlighted{
+                    UIView.animate(withDuration: 0.55, delay: 0.05, options: .curveEaseOut, animations: {
+                        self.imageView.transform = .init(scaleX: 0.95, y: 0.95)
+                    }, completion: nil)
+                }else{
+                    UIView.animate(withDuration: 0.5, delay: 0.05, options: .curveEaseOut, animations: {
+                        self.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+                    }, completion: nil)
+                }
+            }
+        }
+    
     
     //MARK: - UI & Layout
     override func layoutViews() {
         contentView.addSubview(imageView)
-        imageView.layoutToSuperView(to: .top)
-        //imageView.layoutToSuperView(to: .bottom, inset: -60)
-        imageView.layoutToSuperView(to: .bottom)
-        imageView.edgeHorizontal(inset: 0)
+        imageView.layoutToSuperView(to: .top, inset: -12)
+        imageView.layoutToSuperView(to: .bottom, inset: 12)
+        imageView.edgeHorizontal(inset: -12)
         
-
+        
         contentView.addSubview(blackBottomView)
         blackBottomView.layoutToSuperView(to: .bottom, inset: 54)
         blackBottomView.edgeHorizontal(inset: 0)
         blackBottomView.autoSetDimension(.height, toSize: 54*2)
         
-        
         contentView.addSubview(nameLabel)
         nameLabel.layoutToSuperView(to: .bottom, inset: -6)
         nameLabel.autoSetDimension(.height, toSize: 40)
-        nameLabel.edgeHorizontal(inset: 8)
+        nameLabel.edgeHorizontal(inset: 10)
     }
 }
