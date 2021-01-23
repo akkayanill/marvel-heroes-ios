@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Kingfisher
+import TTTAttributedLabel
 
 
 class HeroCollectionViewCell: BaseCell {
@@ -25,7 +27,25 @@ class HeroCollectionViewCell: BaseCell {
         return imgView
     }()
     
-    private let nameLabel = Label(font: AppFont.SemiBold.font(size: 18), textColor: .black, textAlignment: .left, numberOfLines: 1)
+    private let blackBottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        view.cornerRadius = 24
+        
+        return view
+    }()
+    
+    //private let nameLabel = Label(font: AppFont.SemiBold.font(size: 15), textColor: .white, textAlignment: .left, numberOfLines: 2)
+    private let nameLabel: TTTAttributedLabel = {
+        let label = TTTAttributedLabel(frame: .zero)
+        label.verticalAlignment = .center
+        label.font = AppFont.SemiBold.font(size: 15)
+        label.textColor = .white
+        label.textAlignment = .left
+        label.numberOfLines = 2
+
+        return label
+    }()
     
     
     
@@ -44,22 +64,36 @@ class HeroCollectionViewCell: BaseCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func prepareCell() {
-        imageView.image = UIImage(named: "hero_dummy")
-        nameLabel.text = "Hero Name"
+    
+    func prepareCell(_ character: MarvelCharacter) {
+        let name = character.name ?? "Name Unavailable".localized()
+        nameLabel.text = name
+        
+        if let url = character.thumbnail?.url {
+            imageView.kf.setImage(with: url)
+        }
     }
+    
     
     
     //MARK: - UI & Layout
     override func layoutViews() {
         contentView.addSubview(imageView)
         imageView.layoutToSuperView(to: .top)
-        imageView.layoutToSuperView(to: .bottom, inset: -32)
+        //imageView.layoutToSuperView(to: .bottom, inset: -60)
+        imageView.layoutToSuperView(to: .bottom)
         imageView.edgeHorizontal(inset: 0)
         
 
+        contentView.addSubview(blackBottomView)
+        blackBottomView.layoutToSuperView(to: .bottom, inset: 54)
+        blackBottomView.edgeHorizontal(inset: 0)
+        blackBottomView.autoSetDimension(.height, toSize: 54*2)
+        
+        
         contentView.addSubview(nameLabel)
         nameLabel.layoutToSuperView(to: .bottom, inset: -6)
+        nameLabel.autoSetDimension(.height, toSize: 40)
         nameLabel.edgeHorizontal(inset: 8)
     }
 }

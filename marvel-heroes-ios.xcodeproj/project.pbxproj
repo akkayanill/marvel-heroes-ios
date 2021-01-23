@@ -26,6 +26,12 @@
 		A5804B3A25BB649600A33E8E /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B3925BB649600A33E8E /* Label.swift */; };
 		A5804B4125BC376100A33E8E /* LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B4025BC376100A33E8E /* LayoutExtension.swift */; };
 		A5804B4825BC506500A33E8E /* HeroListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B4725BC506500A33E8E /* HeroListCoordinator.swift */; };
+		A5804B5025BC53F400A33E8E /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B4F25BC53F400A33E8E /* RestService.swift */; };
+		A5804B5525BC540700A33E8E /* RestServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B5425BC540700A33E8E /* RestServiceError.swift */; };
+		A5804B5B25BC556A00A33E8E /* HeroService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B5A25BC556A00A33E8E /* HeroService.swift */; };
+		A5804B7925BC63FC00A33E8E /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B7825BC63FC00A33E8E /* Page.swift */; };
+		A5804B7E25BC658F00A33E8E /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B7D25BC658F00A33E8E /* HeroModel.swift */; };
+		A5804B9625BC8E3A00A33E8E /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B9525BC8E3A00A33E8E /* MD5.swift */; };
 		A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */; };
 		A5CF8A2325BB48B800DAC2FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */; };
 		A5CF8A2525BB48B800DAC2FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A2425BB48B800DAC2FA /* ViewController.swift */; };
@@ -82,6 +88,12 @@
 		A5804B3925BB649600A33E8E /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		A5804B4025BC376100A33E8E /* LayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutExtension.swift; sourceTree = "<group>"; };
 		A5804B4725BC506500A33E8E /* HeroListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListCoordinator.swift; sourceTree = "<group>"; };
+		A5804B4F25BC53F400A33E8E /* RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestService.swift; sourceTree = "<group>"; };
+		A5804B5425BC540700A33E8E /* RestServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestServiceError.swift; sourceTree = "<group>"; };
+		A5804B5A25BC556A00A33E8E /* HeroService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroService.swift; sourceTree = "<group>"; };
+		A5804B7825BC63FC00A33E8E /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		A5804B7D25BC658F00A33E8E /* HeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroModel.swift; sourceTree = "<group>"; };
+		A5804B9525BC8E3A00A33E8E /* MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
 		A5CF8A1D25BB48B800DAC2FA /* marvel-heroes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "marvel-heroes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CF8A2025BB48B800DAC2FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CF8A2225BB48B800DAC2FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +160,7 @@
 				A5804B4625BC505C00A33E8E /* Coordinator */,
 				A515770B25BB56A4007B54B3 /* Views */,
 				A5CF8A5625BB52C100DAC2FA /* ViewModel */,
+				A5804B7D25BC658F00A33E8E /* HeroModel.swift */,
 			);
 			path = HeroList;
 			sourceTree = "<group>";
@@ -171,6 +184,7 @@
 				A5804B3425BB609500A33E8E /* BaseCell.swift */,
 				A5804B3925BB649600A33E8E /* Label.swift */,
 				A5804B4025BC376100A33E8E /* LayoutExtension.swift */,
+				A5804B9525BC8E3A00A33E8E /* MD5.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -194,6 +208,14 @@
 				A5804B4725BC506500A33E8E /* HeroListCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		A5804B5925BC556100A33E8E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A5804B5A25BC556A00A33E8E /* HeroService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A5CF8A1425BB48B800DAC2FA = {
@@ -275,6 +297,10 @@
 		A5CF8A5825BB52CE00DAC2FA /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				A5804B5925BC556100A33E8E /* Services */,
+				A5804B4F25BC53F400A33E8E /* RestService.swift */,
+				A5804B5425BC540700A33E8E /* RestServiceError.swift */,
+				A5804B7825BC63FC00A33E8E /* Page.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -543,11 +569,17 @@
 				A5804B3525BB609500A33E8E /* BaseCell.swift in Sources */,
 				A515773525BB5A0B007B54B3 /* HeroListViewModel.swift in Sources */,
 				A5CF8A2525BB48B800DAC2FA /* ViewController.swift in Sources */,
+				A5804B9625BC8E3A00A33E8E /* MD5.swift in Sources */,
 				A5CF8A6225BB53B400DAC2FA /* Coordinator.swift in Sources */,
+				A5804B7E25BC658F00A33E8E /* HeroModel.swift in Sources */,
+				A5804B5B25BC556A00A33E8E /* HeroService.swift in Sources */,
 				A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */,
 				A515771525BB5734007B54B3 /* BaseViewController.swift in Sources */,
+				A5804B7925BC63FC00A33E8E /* Page.swift in Sources */,
 				A515773D25BB5B11007B54B3 /* CollectionView.swift in Sources */,
+				A5804B5025BC53F400A33E8E /* RestService.swift in Sources */,
 				A5804B3A25BB649600A33E8E /* Label.swift in Sources */,
+				A5804B5525BC540700A33E8E /* RestServiceError.swift in Sources */,
 				A5CF8A2325BB48B800DAC2FA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
