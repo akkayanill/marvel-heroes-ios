@@ -9,9 +9,15 @@ import Foundation
 import UIKit
 import CryptoKit
 import RxSwift
+import RxCocoa
 
 
 final class HeroListViewController: BaseViewController {
+    
+    
+    //MARK: - Coordinator
+    var coordinatorDelegate: HeroListCoordinatorProtocol?
+    
     
     
     
@@ -28,6 +34,8 @@ final class HeroListViewController: BaseViewController {
     
     let cellId = "HeroCellId"
     
+    var page: Int = 0
+    
     
     
     
@@ -37,16 +45,15 @@ final class HeroListViewController: BaseViewController {
         
         self.title = "Heroes".localized()
         collectionView.delegate = self
+        
 //        collectionView.dataSource = self
 //        collectionView.register(cellWithClass: HeroCollectionViewCell.self)
         collectionView.register(HeroCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         
         
-        viewModel.getHeroList(page: 0)
-        
-        viewModel.characters.bind(to: collectionView.rx.items(cellIdentifier: self.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
-            cell.prepareCell(character)
-        }.disposed(by: disposeBag)
+        // Fetch Heroes
+        viewModel.getHeroList(page: self.page)
+        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +62,34 @@ final class HeroListViewController: BaseViewController {
         setupNavigationBar()
     }
     
+    
+    
+    private func setupBindings() {
+        viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
+        
+        viewModel.characters.bind(to: collectionView.rx.items(cellIdentifier: self.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
+            cell.prepareCell(character)
+        }.disposed(by: disposeBag)
+        
+        collectionView.rx.willDisplayCell
+            .subscribe(onNext: ({ (cell,indexPath) in
+                cell.animateCell()
+                
+                if try! self.viewModel.loading.value() == false &&  indexPath.row > 26*self.page {
+                    print("☀️☀️☀️ fetch : \(try! self.viewModel.loading.value())")
+                    self.page += 1
+//                    self.viewModel.getHeroList(page: self.page)
+                } else {
+                    print("🥶🥶🥶 don't fetch   \(try! self.viewModel.loading.value())")
+                }
+            })).disposed(by: disposeBag)
+        
+        collectionView.rx.itemSelected.subscribe(onNext:{ indexPath in
+            let characters = try! self.viewModel.characters.value()
+            let character = characters[indexPath.row]
+            self.coordinatorDelegate?.showDetailViewController(character)
+        }).disposed(by: disposeBag)
+    }
     
     
     //MARK: - UI & Layout
@@ -76,7 +111,7 @@ extension HeroListViewController: UICollectionViewDelegate, UICollectionViewDele
 
 //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //        let cell = collectionView.dequeueReusableCell(withClass: HeroCollectionViewCell.self, for: indexPath)
-//        cell.prepareCell()
+////        cell.prepareCell()
 //        return cell
 //    }
 
@@ -91,5 +126,27 @@ extension HeroListViewController: UICollectionViewDelegate, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 24.0
     }
-
+    
 }
+
+
+
+
+
+//MARK: - Loading Extension for Loading Animations
+extension Reactive where Base: BaseViewController {
+    
+    /// Bindable sink for `startAnimating()`, `stopAnimating()` methods.
+    internal var isAnimating: Binder<Bool> {
+        return Binder(self.base, binding: { (vc, active) in
+            if active {
+                //vc.startAnimating()
+                vc.startAnimating()
+            } else {
+                vc.stopAnimating()
+            }
+        })
+    }
+    
+}
+
