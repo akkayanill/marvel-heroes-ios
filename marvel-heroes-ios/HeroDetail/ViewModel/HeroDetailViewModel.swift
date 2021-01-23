@@ -9,8 +9,13 @@ import Foundation
 import UIKit
 
 
-class HeroDetailViewModel {
+final class HeroDetailViewModel {
     
     
+    //MARK: - Variables
+    var character: MarvelCharacter!
+    
+    
+    //MARK: - Endpoints
     
 }
