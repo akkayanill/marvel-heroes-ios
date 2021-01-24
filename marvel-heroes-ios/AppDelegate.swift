@@ -7,6 +7,11 @@
 
 import UIKit
 
+
+let screenSize = UIScreen.main.bounds
+
+
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
