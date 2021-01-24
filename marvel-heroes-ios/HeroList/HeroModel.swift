@@ -60,6 +60,14 @@ struct MarvelCharacter : Mappable {
     var events : Events?
     var urls : [Urls]?
 
+    init(id: Int, name: String, desc: String, image: String) {
+        self.id = id
+        self.name = name
+        self.desc  = desc
+        let url = URL(string: image)!
+        self.thumbnail?.url = url
+    }
+    
     init?(map: Map) {
 
     }
@@ -135,8 +143,13 @@ struct Thumbnail : Mappable {
     var fExtension : String?
     
     var url: URL? {
-        guard let path = path, let fExtension = fExtension else { return nil }
-        return URL(string: "\(path).\(fExtension)")
+        get {
+            guard let path = path, let fExtension = fExtension else { return nil }
+            return URL(string: "\(path).\(fExtension)")
+        }
+        set {
+            
+        }
     }
     
     init?(map: Map) {

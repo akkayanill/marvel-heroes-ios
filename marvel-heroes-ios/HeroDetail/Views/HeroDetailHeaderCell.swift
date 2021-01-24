@@ -20,7 +20,7 @@ final class HeroDetailHeaderCell: UICollectionViewCell {
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
         imgView.backgroundColor = .clear
-        imgView.image = UIImage(named: "hero_dummy")
+        imgView.clipsToBounds = true
         
         return imgView
     }()

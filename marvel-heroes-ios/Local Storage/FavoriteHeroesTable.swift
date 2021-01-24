@@ -101,4 +101,22 @@ class FavoriteHeroesTable {
     }
     
     
+    static func getFavoriteHeroes() -> Statement? {
+        guard let database = LocalDBConnection.shared.conn else {
+            return nil
+        }
+        
+        let query = "SELECT hero_id, hero_name, hero_desc, hero_image FROM favorites"
+        
+        do {
+            let result = try database.prepare(query)
+            return result
+        } catch let error {
+            print("isLiked error: \(error)")
+            return nil
+        }
+        
+    }
+    
+    
 }

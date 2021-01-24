@@ -26,13 +26,14 @@ final class HeroListViewController: BaseViewController {
     
     let viewModel = HeroListViewModel()
     
-    let collectionView = CollectionView()
+    //let collectionView = CollectionView()
+    let collectionView = HeroListCollectionView()
     
     var cellSize: CGFloat {
         return screenSize.width/2.0 - 30.0
     }
     
-    let cellId = "HeroCellId"
+//    let cellId = "HeroCellId"
     
     var page: Int = 1
     
@@ -44,9 +45,10 @@ final class HeroListViewController: BaseViewController {
         super.viewDidLoad()
         
         self.title = "Heroes".localized()
-        collectionView.delegate = self
-        collectionView.register(HeroCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+//        collectionView.delegate = self
+//        collectionView.register(HeroCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         
+        addFavoritesButton()
         
         // Fetch Heroes
         viewModel.getHeroList(page: 0)
@@ -64,12 +66,11 @@ final class HeroListViewController: BaseViewController {
         viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
         
         
-        
         //
         // CollectionView
         //
         // Set Collection View Info
-        viewModel.characters.bind(to: collectionView.rx.items(cellIdentifier: self.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
+        viewModel.characters.bind(to: collectionView.rx.items(cellIdentifier: self.collectionView.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
             cell.prepareCell(character)
         }.disposed(by: disposeBag)
         
@@ -81,7 +82,6 @@ final class HeroListViewController: BaseViewController {
                 cell.animateCell()
                 
                 if try! self.viewModel.loading.value() == false && indexPath.row > (Page().limit - 4) * self.page { // Can fetch the next page
-//                    print("☀️☀️☀️ fetch : \(try! self.viewModel.loading.value())")
                     self.viewModel.getHeroList(page: self.page)
                     self.page += 1
                 }
@@ -96,6 +96,18 @@ final class HeroListViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
     
+    private func addFavoritesButton() {
+        let favButton = UIButton()
+        favButton.setTitle("Favorites".localized(), for: .normal)
+        favButton.setTitleColor(.black, for: .normal)
+        favButton.addTarget(self, action: #selector(favoritesButtonTapped), for: .touchUpInside)
+        let likeBarButton = UIBarButtonItem(customView: favButton)
+        navigationItem.rightBarButtonItem = likeBarButton
+    }
+    
+    @objc func favoritesButtonTapped() {
+        coordinatorDelegate?.showFavoriteHeroes()
+    }
     
     //MARK: - UI & Layout
     override func layoutViews() {
@@ -106,21 +118,21 @@ final class HeroListViewController: BaseViewController {
 }
 
 
-//MARK: - UICollectionView Delegate & DataSource
-extension HeroListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: cellSize, height: cellSize+24)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 24.0
-    }
-    
-}
+//MARK: - UICollectionView Delegate
+//extension HeroListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: cellSize, height: cellSize+24)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 24.0
+//    }
+//
+//}
 
 
 
