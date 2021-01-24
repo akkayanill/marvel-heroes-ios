@@ -9,12 +9,13 @@ import Foundation
 import UIKit
 
 
-class HeroDetailHeaderCell: UICollectionViewCell {
+/// Includes animatable ImageView
+final class HeroDetailHeaderCell: UICollectionViewCell {
     
     
-    public var animator: UIViewPropertyAnimator?
+    internal var animator: UIViewPropertyAnimator?
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
@@ -24,6 +25,9 @@ class HeroDetailHeaderCell: UICollectionViewCell {
         return imgView
     }()
     
+    
+    
+    //MARK: Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -35,13 +39,20 @@ class HeroDetailHeaderCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func prepareCell(viewModel: HeroDetailViewModel) {
+        if let imageUrl = viewModel.character.thumbnail?.url {
+            imageView.kf.setImage(with: imageUrl)
+        }
+    }
+    
     
     private func layoutViews() {
         addSubview(imageView)
         imageView.fillToSuperview()
     }
     
-    // MARK:- add visual effect view
+    
+    // MARK: Add visual effect view
     private func addBlurVisulaEffectView() {
         
         animator = UIViewPropertyAnimator(duration: 4.0, curve: .easeInOut, animations: { [weak self] in

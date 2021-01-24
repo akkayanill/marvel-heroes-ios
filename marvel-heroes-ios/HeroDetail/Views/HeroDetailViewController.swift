@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class HeroDetailViewController: BaseViewController {
+final class HeroDetailViewController: BaseViewController {
     
     
     
@@ -44,17 +44,23 @@ class HeroDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = viewModel.character.name ?? "Unknown Name"
         setupCollectionView()
         addBackButton()
-        header?.backgroundColor = .orange
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupTransparentNavigationBar()
     }
     
     private func setupCollectionView() {
         collectionView.register(supplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: HeroDetailHeaderCell.self)
         collectionView.register(cellWithClass: HeroCollectionViewCell.self)
+        collectionView.register(cellWithClass: HeroInformationCell.self)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -85,14 +91,21 @@ class HeroDetailViewController: BaseViewController {
 
 //MARK: - Collection View Data Source & Delegate
 extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withClass: HeroCollectionViewCell.self, for: indexPath)
+        let informationCell = collectionView.dequeueReusableCell(withClass: HeroInformationCell.self, for: indexPath)
+        informationCell.prepareCell(viewModel: self.viewModel)
+        informationCell.backgroundColor = .orange
+        return informationCell
         
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -100,19 +113,34 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 25, left: 0, bottom: 20, right: 0)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         self.header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withClass: HeroDetailHeaderCell.self, for: indexPath)
-        header?.backgroundColor = .red
+        header?.prepareCell(viewModel: viewModel)
+        
         return self.header!
     }
+    
+    // Header Size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: screenSize.width, height: 450)
+        if section == 1 {
+            return .zero
+        }
+        return CGSize(width: screenSize.width, height: screenSize.width+45)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: screenSize.width, height: cellSize+24)
+        
+        let estimatedFrame = self.viewModel.getEstimatedDescriptionHeight()
+        print("estimatedFrame: \(estimatedFrame.height)")
+        
+        if indexPath.section == 0 {
+            return CGSize(width: screenSize.width-40, height: estimatedFrame.height + 40)
+        }
+        
+        return CGSize(width: screenSize.width, height: estimatedFrame.height + 40)
+        
     }
 }
