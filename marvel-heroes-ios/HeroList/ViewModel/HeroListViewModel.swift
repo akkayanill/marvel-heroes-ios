@@ -17,7 +17,6 @@ final class HeroListViewModel {
     
     let loading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     
-    //var characters = PublishSubject<[MarvelCharacter]>()
     var characters = BehaviorSubject<[MarvelCharacter]>(value: [])
     
     
