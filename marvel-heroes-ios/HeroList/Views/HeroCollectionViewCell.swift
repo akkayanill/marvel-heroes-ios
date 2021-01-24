@@ -10,7 +10,7 @@ import Kingfisher
 import TTTAttributedLabel
 
 
-class HeroCollectionViewCell: BaseCell {
+class HeroCollectionViewCell: UICollectionViewCell {
     
     
     //MARK: - Variables
@@ -35,7 +35,6 @@ class HeroCollectionViewCell: BaseCell {
         return view
     }()
     
-    //private let nameLabel = Label(font: AppFont.SemiBold.font(size: 15), textColor: .white, textAlignment: .left, numberOfLines: 2)
     private let nameLabel: TTTAttributedLabel = {
         let label = TTTAttributedLabel(frame: .zero)
         label.verticalAlignment = .center
@@ -82,7 +81,7 @@ class HeroCollectionViewCell: BaseCell {
                     UIView.animate(withDuration: 0.55, delay: 0.05, options: .curveEaseOut, animations: {
                         self.imageView.transform = .init(scaleX: 0.95, y: 0.95)
                     }, completion: nil)
-                }else{
+                } else {
                     UIView.animate(withDuration: 0.5, delay: 0.05, options: .curveEaseOut, animations: {
                         self.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
                     }, completion: nil)
@@ -92,7 +91,7 @@ class HeroCollectionViewCell: BaseCell {
     
     
     //MARK: - UI & Layout
-    override func layoutViews() {
+    private func layoutViews() {
         contentView.addSubview(imageView)
         imageView.layoutToSuperView(to: .top, inset: -12)
         imageView.layoutToSuperView(to: .bottom, inset: 12)
