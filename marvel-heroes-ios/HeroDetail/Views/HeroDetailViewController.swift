@@ -63,7 +63,6 @@ final class HeroDetailViewController: BaseViewController {
     }
     
     private func setupBindings() {
-        
         viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
         
         viewModel.comics.subscribe { (event) in
@@ -88,18 +87,11 @@ final class HeroDetailViewController: BaseViewController {
     //MARK: - ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let contentOffsetY = scrollView.contentOffset.y
-        print(contentOffsetY)
         if contentOffsetY < -40 {
             header?.animator?.fractionComplete = abs(contentOffsetY) / 200
         } else {
             header?.animator?.fractionComplete = 0.0
         }
-
-//        if contentOffsetY > 150 {
-//            self.navigationController?.setNavigationBarHidden(true, animated: true)
-//        } else {
-//            self.navigationController?.setNavigationBarHidden(false, animated: true)
-//        }
     }
     
     
