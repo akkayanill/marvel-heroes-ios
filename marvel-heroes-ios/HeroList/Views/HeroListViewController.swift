@@ -75,11 +75,6 @@ final class HeroListViewController: BaseViewController {
         
         
         
-//        viewModel..bind(to: collectionView.rx.items(cellIdentifier: self.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
-//            cell.prepareCell(character)
-//        }.disposed(by: disposeBag)
-        
-        
         // Paging & Animation
         collectionView.rx.willDisplayCell
             .subscribe(onNext: ({ (cell,indexPath) in
@@ -112,19 +107,7 @@ final class HeroListViewController: BaseViewController {
 
 
 //MARK: - UICollectionView Delegate & DataSource
-//UICollectionViewDataSource
 extension HeroListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 20
-//    }
-
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withClass: HeroCollectionViewCell.self, for: indexPath)
-////        cell.prepareCell()
-//        return cell
-//    }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: cellSize, height: cellSize+24)
     }
