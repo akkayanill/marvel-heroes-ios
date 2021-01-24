@@ -11,6 +11,9 @@ import UIKit
 
 class HeroDetailHeaderCell: UICollectionViewCell {
     
+    
+    
+    
     public var animator: UIViewPropertyAnimator?
     
     let imageView: UIImageView = {
@@ -18,6 +21,7 @@ class HeroDetailHeaderCell: UICollectionViewCell {
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
         imgView.backgroundColor = .clear
+        imgView.image = UIImage(named: "hero_dummy")
         
         return imgView
     }()

@@ -34,7 +34,7 @@ final class HeroListViewController: BaseViewController {
     
     let cellId = "HeroCellId"
     
-    var page: Int = 0
+    var page: Int = 1
     
     
     
@@ -52,7 +52,7 @@ final class HeroListViewController: BaseViewController {
         
         
         // Fetch Heroes
-        viewModel.getHeroList(page: self.page)
+        viewModel.getHeroList(page: 0)
         setupBindings()
     }
     
@@ -65,25 +65,34 @@ final class HeroListViewController: BaseViewController {
     
     
     private func setupBindings() {
+        //Loading Animation Show & Hide
         viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
         
+        
+        //
+        //CollectionView
+        //
+        
+        // Set Collection View Info
         viewModel.characters.bind(to: collectionView.rx.items(cellIdentifier: self.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
             cell.prepareCell(character)
         }.disposed(by: disposeBag)
         
+        
+        // Paging & Animation
         collectionView.rx.willDisplayCell
             .subscribe(onNext: ({ (cell,indexPath) in
                 cell.animateCell()
                 
-                if try! self.viewModel.loading.value() == false &&  indexPath.row > 26*self.page {
+                if try! self.viewModel.loading.value() == false && indexPath.row > 26*self.page { // Can fetch the next page
                     print("☀️☀️☀️ fetch : \(try! self.viewModel.loading.value())")
+                    self.viewModel.getHeroList(page: self.page)
                     self.page += 1
-//                    self.viewModel.getHeroList(page: self.page)
-                } else {
-                    print("🥶🥶🥶 don't fetch   \(try! self.viewModel.loading.value())")
                 }
             })).disposed(by: disposeBag)
         
+        
+        // Item Select
         collectionView.rx.itemSelected.subscribe(onNext:{ indexPath in
             let characters = try! self.viewModel.characters.value()
             let character = characters[indexPath.row]

@@ -29,8 +29,19 @@ final class HeroListViewModel {
         HeroService.characterList(page: page).request(to: HeroModel.self).subscribe { event in
             
             self.loading.onNext(false)
-            if let characters = event.element?.data?.results {
-                self.characters.onNext(characters)
+            if let heroes = event.element?.data?.results {
+                if page > 0 {
+//                    try! self.characters.value().append(contentsOf: )
+                    print("appending")
+                    do {
+                        try self.characters.self.onNext(self.characters.value() + heroes) // concatenating older value with new
+                    } catch {
+                        print(error)
+                    }
+                    
+                } else {
+                    self.characters.onNext(heroes)
+                }
             }
         }.disposed(by: disposeBag)
     }
