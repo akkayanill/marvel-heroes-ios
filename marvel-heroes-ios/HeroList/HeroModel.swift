@@ -10,6 +10,7 @@ import ObjectMapper
 
 
 //MARK: - HeroModel
+
 struct HeroModel : Mappable {
     var code : Int?
     var status : String?

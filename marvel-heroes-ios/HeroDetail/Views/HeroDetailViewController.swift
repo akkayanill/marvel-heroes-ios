@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 
 final class HeroDetailViewController: BaseViewController {
@@ -14,6 +15,8 @@ final class HeroDetailViewController: BaseViewController {
     
     
     //MARK: - Variable & Constants
+    private let disposeBag = DisposeBag()
+    
     var cellSize: CGFloat {
         return screenSize.width/2.0 - 30.0
     }
@@ -48,6 +51,9 @@ final class HeroDetailViewController: BaseViewController {
         addBackButton()
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        viewModel.getHeroComics()
+        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,10 +62,21 @@ final class HeroDetailViewController: BaseViewController {
         setupTransparentNavigationBar()
     }
     
+    private func setupBindings() {
+        
+        viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
+        
+        viewModel.comics.subscribe { (event) in
+            self.collectionView.reloadData()
+        }
+
+    }
+    
     private func setupCollectionView() {
         collectionView.register(supplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: HeroDetailHeaderCell.self)
         collectionView.register(cellWithClass: HeroCollectionViewCell.self)
         collectionView.register(cellWithClass: HeroInformationCell.self)
+        collectionView.register(cellWithClass: ComicsCell.self)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -76,6 +93,13 @@ final class HeroDetailViewController: BaseViewController {
         } else {
             header?.animator?.fractionComplete = 0.0
         }
+        
+        if contentOffsetY > 150 {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        } else {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+        
     }
     
     
@@ -97,23 +121,40 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            return 1
+        } else {
+            let count = try? viewModel.comics.value().count
+            return count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let informationCell = collectionView.dequeueReusableCell(withClass: HeroInformationCell.self, for: indexPath)
-        informationCell.prepareCell(viewModel: self.viewModel)
-        informationCell.backgroundColor = .orange
-        return informationCell
-        
+        if indexPath.section == 0 {
+            let informationCell = collectionView.dequeueReusableCell(withClass: HeroInformationCell.self, for: indexPath)
+            informationCell.prepareCell(viewModel: self.viewModel)
+            informationCell.backgroundColor = .orange
+            
+            return informationCell
+        } else {
+            let comicsCell = collectionView.dequeueReusableCell(withClass: ComicsCell.self, for: indexPath)
+            if let comics = try? viewModel.comics.value() {
+                print("comic count: \(comics.count)")
+                comicsCell.prepareCell(comic: comics[indexPath.row])
+            }
+            return comicsCell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 24
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        if section == 1 { // Comics
+            return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        }
+        return .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -140,7 +181,6 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             return CGSize(width: screenSize.width-40, height: estimatedFrame.height + 40)
         }
         
-        return CGSize(width: screenSize.width, height: estimatedFrame.height + 40)
-        
+        return CGSize(width: cellSize, height: cellSize+75)
     }
 }

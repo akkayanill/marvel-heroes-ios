@@ -59,8 +59,6 @@ final class HeroListViewController: BaseViewController {
         setupNavigationBar()
     }
     
-    
-    
     private func setupBindings() {
         //Loading Animation Show & Hide
         viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
@@ -74,6 +72,12 @@ final class HeroListViewController: BaseViewController {
         viewModel.characters.bind(to: collectionView.rx.items(cellIdentifier: self.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
             cell.prepareCell(character)
         }.disposed(by: disposeBag)
+        
+        
+        
+//        viewModel..bind(to: collectionView.rx.items(cellIdentifier: self.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
+//            cell.prepareCell(character)
+//        }.disposed(by: disposeBag)
         
         
         // Paging & Animation

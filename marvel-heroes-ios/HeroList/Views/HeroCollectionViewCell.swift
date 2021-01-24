@@ -42,7 +42,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
         label.textColor = .white
         label.textAlignment = .left
         label.numberOfLines = 2
-
+        
         return label
     }()
     
@@ -76,18 +76,19 @@ class HeroCollectionViewCell: UICollectionViewCell {
     
     
     override var isHighlighted: Bool{
-            didSet{
-                if isHighlighted{
-                    UIView.animate(withDuration: 0.55, delay: 0.05, options: .curveEaseOut, animations: {
-                        self.imageView.transform = .init(scaleX: 0.95, y: 0.95)
-                    }, completion: nil)
-                } else {
-                    UIView.animate(withDuration: 0.5, delay: 0.05, options: .curveEaseOut, animations: {
-                        self.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
-                    }, completion: nil)
-                }
+        didSet{
+            if isHighlighted{
+                UIView.animate(withDuration: 0.55, delay: 0.05, options: .curveEaseOut, animations: {
+                    self.imageView.transform = .init(scaleX: 0.95, y: 0.95)
+                }, completion: nil)
+            } else {
+                UIView.animate(withDuration: 0.5, delay: 0.05, options: .curveEaseOut, animations: {
+                    self.imageView.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+                }, completion: nil)
             }
         }
+    }
+    
     
     
     //MARK: - UI & Layout

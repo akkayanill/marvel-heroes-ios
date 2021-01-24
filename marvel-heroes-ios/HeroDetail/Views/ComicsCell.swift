@@ -9,27 +9,28 @@ import Foundation
 import UIKit
 import TTTAttributedLabel
 
-class ComicsCell: UICollectionViewCell {
+final class ComicsCell: UICollectionViewCell {
 
     
     
     //MARK: - Visual Objects
     private let imageView: UIImageView = {
         let imgView = UIImageView()
-        imgView.image = UIImage(named: "comic-dummy")
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
-        
+        imgView.clipsToBounds = true
+        imgView.cornerRadius = 6
         return imgView
     }()
+    
     
     private let nameLabel: TTTAttributedLabel = {
         let label = TTTAttributedLabel(frame: .zero)
         label.verticalAlignment = .center
-        label.font = AppFont.SemiBold.font(size: 14)
-        label.textColor = .white
+        label.font = AppFont.SemiBold.font(size: 12)
+        label.textColor = .black
         label.textAlignment = .left
-        label.numberOfLines = 2
+        label.numberOfLines = 3
 
         return label
     }()
@@ -39,7 +40,6 @@ class ComicsCell: UICollectionViewCell {
     //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         
         layoutViews()
         self.backgroundColor = .white
@@ -51,17 +51,25 @@ class ComicsCell: UICollectionViewCell {
     }
     
     
+    func prepareCell(comic: ComicResults) {
+        nameLabel.text = comic.title
+        imageView.kf.setImage(with: comic.thumbnail?.url)
+        //nameLabel.text = "justice league 2017 djgngjnsldgj lsdjgnsdlgjn"
+        //imageView.image = UIImage(named: "comic-dummy")
+    }
+    
     
     //MARK: - Layout
     private func layoutViews() {
         addSubview(imageView)
         imageView.edgeHorizontal(inset: 0)
         imageView.layoutToSuperView(to: .top)
+        imageView.layoutToSuperView(to: .bottom,inset: -60)
         
         addSubview(nameLabel)
+        nameLabel.autoPinEdge(.top, to: .bottom, of: imageView, withOffset: 2)
+        nameLabel.edgeHorizontal(inset: 0)
         nameLabel.layoutToSuperView(to: .bottom)
-        nameLabel.edgeHorizontal(inset: 6)
-        nameLabel.autoSetDimension(.height, toSize: 40)
     }
     
 }

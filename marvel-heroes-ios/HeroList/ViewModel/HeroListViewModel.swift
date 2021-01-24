@@ -26,7 +26,7 @@ final class HeroListViewModel {
     func getHeroList(page: Int) {
         self.loading.onNext(true)
         
-        HeroService.characterList(page: page).request(to: HeroModel.self).subscribe { event in
+        MarvelService.characterList(page: page).request(to: HeroModel.self).subscribe { event in
             
             self.loading.onNext(false)
             if let heroes = event.element?.data?.results {

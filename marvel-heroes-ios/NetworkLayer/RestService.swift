@@ -16,7 +16,7 @@ import func CommonCrypto.CC_MD5
 import typealias CommonCrypto.CC_LONG
 
 
-var printHTMLResponses: Bool = false
+var printHTMLResponses: Bool = true
 
 
 public protocol RestService {
