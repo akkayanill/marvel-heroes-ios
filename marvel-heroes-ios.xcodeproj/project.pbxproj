@@ -53,6 +53,7 @@
 		A5CF8A6225BB53B400DAC2FA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8A6125BB53B400DAC2FA /* Coordinator.swift */; };
 		A5D3683125BCAE4B007B4C57 /* HeroDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3683025BCAE4B007B4C57 /* HeroDetailHeaderCell.swift */; };
 		A5D3683B25BCB747007B4C57 /* CollectionViewCellAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3683A25BCB747007B4C57 /* CollectionViewCellAnimation.swift */; };
+		A5F52F1925BE1CE5003601E9 /* FavoriteHeroesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F52F1825BE1CE5003601E9 /* FavoriteHeroesListViewController.swift */; };
 		F90092E267D7CB53CCE7EEA8 /* Pods_marvel_heroes_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9442F0AEDBC5C5C5DBDCA4F5 /* Pods_marvel_heroes_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,7 @@
 		A5CF8A6125BB53B400DAC2FA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		A5D3683025BCAE4B007B4C57 /* HeroDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailHeaderCell.swift; sourceTree = "<group>"; };
 		A5D3683A25BCB747007B4C57 /* CollectionViewCellAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellAnimation.swift; sourceTree = "<group>"; };
+		A5F52F1825BE1CE5003601E9 /* FavoriteHeroesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteHeroesListViewController.swift; sourceTree = "<group>"; };
 		ED8FFB5FF5DB1E6070FE738B /* Pods-marvel-heroes-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-marvel-heroes-ios.debug.xcconfig"; path = "Target Support Files/Pods-marvel-heroes-ios/Pods-marvel-heroes-ios.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -306,6 +308,8 @@
 		A5CF8A1F25BB48B800DAC2FA /* marvel-heroes-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A5F52F2225BE1D6D003601E9 /* Coordinator */,
+				A5F52F1725BE1CDB003601E9 /* FavoriteHeroes */,
 				A57A490A25BDFEB900A1F63F /* Local Storage */,
 				A515771F25BB5803007B54B3 /* Supporting Files */,
 				A515771925BB5766007B54B3 /* Base */,
@@ -320,8 +324,6 @@
 				A5CF8A2925BB48BA00DAC2FA /* Assets.xcassets */,
 				A5CF8A2B25BB48BA00DAC2FA /* LaunchScreen.storyboard */,
 				A5CF8A2E25BB48BA00DAC2FA /* Info.plist */,
-				A5CF8A5925BB535400DAC2FA /* AppCoordinator.swift */,
-				A5CF8A6125BB53B400DAC2FA /* Coordinator.swift */,
 			);
 			path = "marvel-heroes-ios";
 			sourceTree = "<group>";
@@ -368,6 +370,39 @@
 				A5804B7825BC63FC00A33E8E /* Page.swift */,
 			);
 			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		A5F52F1725BE1CDB003601E9 /* FavoriteHeroes */ = {
+			isa = PBXGroup;
+			children = (
+				A5F52F2125BE1D5D003601E9 /* Views */,
+				A5F52F2025BE1D59003601E9 /* ViewModel */,
+			);
+			path = FavoriteHeroes;
+			sourceTree = "<group>";
+		};
+		A5F52F2025BE1D59003601E9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A5F52F2125BE1D5D003601E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5F52F1825BE1CE5003601E9 /* FavoriteHeroesListViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A5F52F2225BE1D6D003601E9 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A5CF8A5925BB535400DAC2FA /* AppCoordinator.swift */,
+				A5CF8A6125BB53B400DAC2FA /* Coordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		FB3B5A15BC9E30A2CC024D22 /* Frameworks */ = {
@@ -624,6 +659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F52F1925BE1CE5003601E9 /* FavoriteHeroesListViewController.swift in Sources */,
 				A515770D25BB5720007B54B3 /* HeroListViewController.swift in Sources */,
 				A5D3683125BCAE4B007B4C57 /* HeroDetailHeaderCell.swift in Sources */,
 				A57A491425BDFF5F00A1F63F /* FavoriteHeroesTable.swift in Sources */,
