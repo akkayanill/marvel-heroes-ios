@@ -45,9 +45,6 @@ final class HeroListViewController: BaseViewController {
         
         self.title = "Heroes".localized()
         collectionView.delegate = self
-        
-//        collectionView.dataSource = self
-//        collectionView.register(cellWithClass: HeroCollectionViewCell.self)
         collectionView.register(HeroCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         
         
@@ -69,10 +66,10 @@ final class HeroListViewController: BaseViewController {
         viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
         
         
-        //
-        //CollectionView
-        //
         
+        //
+        // CollectionView
+        //
         // Set Collection View Info
         viewModel.characters.bind(to: collectionView.rx.items(cellIdentifier: self.cellId, cellType: HeroCollectionViewCell.self)) { index, character, cell in
             cell.prepareCell(character)
@@ -84,8 +81,8 @@ final class HeroListViewController: BaseViewController {
             .subscribe(onNext: ({ (cell,indexPath) in
                 cell.animateCell()
                 
-                if try! self.viewModel.loading.value() == false && indexPath.row > 26*self.page { // Can fetch the next page
-                    print("☀️☀️☀️ fetch : \(try! self.viewModel.loading.value())")
+                if try! self.viewModel.loading.value() == false && indexPath.row > (Page().limit - 4) * self.page { // Can fetch the next page
+//                    print("☀️☀️☀️ fetch : \(try! self.viewModel.loading.value())")
                     self.viewModel.getHeroList(page: self.page)
                     self.page += 1
                 }

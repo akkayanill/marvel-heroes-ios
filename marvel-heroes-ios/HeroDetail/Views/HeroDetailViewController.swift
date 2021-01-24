@@ -47,6 +47,9 @@ class HeroDetailViewController: BaseViewController {
         title = viewModel.character.name ?? "Unknown Name"
         setupCollectionView()
         addBackButton()
+        header?.backgroundColor = .orange
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     private func setupCollectionView() {
@@ -102,6 +105,7 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         self.header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withClass: HeroDetailHeaderCell.self, for: indexPath)
+        header?.backgroundColor = .red
         return self.header!
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

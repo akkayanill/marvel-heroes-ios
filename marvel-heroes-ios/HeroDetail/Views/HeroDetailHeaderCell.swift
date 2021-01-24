@@ -12,8 +12,6 @@ import UIKit
 class HeroDetailHeaderCell: UICollectionViewCell {
     
     
-    
-    
     public var animator: UIViewPropertyAnimator?
     
     let imageView: UIImageView = {
@@ -30,7 +28,7 @@ class HeroDetailHeaderCell: UICollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = .white
-        
+        layoutViews()
     }
     
     required init?(coder: NSCoder) {
@@ -50,16 +48,10 @@ class HeroDetailHeaderCell: UICollectionViewCell {
             guard let strongSelf = self else { return }
             
             let blurEffect = UIBlurEffect(style: .regular)
-            let visulaEffectView = UIVisualEffectView(effect: blurEffect)
-            visulaEffectView.translatesAutoresizingMaskIntoConstraints = false
-            strongSelf.addSubview(visulaEffectView)
-            visulaEffectView.fillToSuperview()
-//            NSLayoutConstraint.activate([
-//                visulaEffectView.topAnchor.constraint(equalTo: strongSelf.topAnchor, constant: 0),
-//                visulaEffectView.leadingAnchor.constraint(equalTo: strongSelf.leadingAnchor, constant: 0),
-//                visulaEffectView.bottomAnchor.constraint(equalTo: strongSelf.bottomAnchor, constant: 0),
-//                visulaEffectView.trailingAnchor.constraint(equalTo: strongSelf.trailingAnchor, constant: 0)
-//            ])
+            let visualEffectView = UIVisualEffectView(effect: blurEffect)
+            visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+            strongSelf.addSubview(visualEffectView)
+            visualEffectView.fillToSuperview()
         })
     }
 }
