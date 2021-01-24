@@ -43,7 +43,14 @@ struct HeroModel : Mappable {
 struct MarvelCharacter : Mappable {
     var id : Int?
     var name : String?
-    var description : String?
+    var description: String {
+        if desc == "" || desc == nil {
+            return "Description is not available".localized()
+        } else {
+            return desc!
+        }
+    }
+    private var desc : String?
     var modified : String?
     var thumbnail : Thumbnail?
     var resourceURI : String?
@@ -61,7 +68,7 @@ struct MarvelCharacter : Mappable {
 
         id <- map["id"]
         name <- map["name"]
-        description <- map["description"]
+        desc <- map["description"]
         modified <- map["modified"]
         thumbnail <- map["thumbnail"]
         resourceURI <- map["resourceURI"]

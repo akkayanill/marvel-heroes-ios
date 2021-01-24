@@ -19,7 +19,7 @@ final class HeroDetailViewModel {
     var character: MarvelCharacter!
     let loading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     var comics = BehaviorSubject<[ComicResults]>(value: [])
-//    var alert: BehaviorSubject<Bool>?
+    //    var alert: BehaviorSubject<Bool>?
     
     
     
@@ -27,13 +27,11 @@ final class HeroDetailViewModel {
     func getEstimatedDescriptionHeight() -> CGRect{
         let size = CGSize(width: screenSize.width-40, height: 1000)
         
-        if let description = self.character.description {
-//            print("\n\n ********** description:  \(description)")
-            let estimatedFrame = NSString(string: description).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : AppFont.Regular.font(size: 12)], context: nil)
-            
-            return estimatedFrame
-        }
-        return .zero
+        let description = self.character.description
+        //            print("\n\n ********** description:  \(description)")
+        let estimatedFrame = NSString(string: description).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : AppFont.Regular.font(size: 12)], context: nil)
+        
+        return estimatedFrame
     }
     
     
@@ -44,14 +42,14 @@ final class HeroDetailViewModel {
             self.loading.onNext(true)
             
             MarvelService.getComics(id: characterID).request(to: ComicModel.self).subscribe { event in
-
+                
                 self.loading.onNext(false)
-
+                
                 if let comics = event.element?.data?.results {
                     self.comics.onNext(comics)
-//                    comics.forEach { (mc) in
-//                        print("*********** name: \(mc.title ?? "unknown") *********")
-//                    }
+                    //                    comics.forEach { (mc) in
+                    //                        print("*********** name: \(mc.title ?? "unknown") *********")
+                    //                    }
                 }
             }.disposed(by: disposeBag)
         } else {

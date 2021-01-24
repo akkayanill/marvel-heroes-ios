@@ -51,8 +51,8 @@ final class HeroInformationCell: UICollectionViewCell {
     func prepareCell(viewModel: HeroDetailViewModel) {
         let name = viewModel.character.name ?? "Name is not available".localized()
         nameLabel.text = name
-        let description = viewModel.character.description ?? "Description is not available".localized()
-        descLabel.text = description
+//        let description = viewModel.character.description ??
+        descLabel.text = viewModel.character.description
     }
     
     

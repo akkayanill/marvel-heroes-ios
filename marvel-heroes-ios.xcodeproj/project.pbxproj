@@ -218,6 +218,13 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A57A490A25BDFEB900A1F63F /* Local Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Local Storage";
+			sourceTree = "<group>";
+		};
 		A5804B4625BC505C00A33E8E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +297,7 @@
 		A5CF8A1F25BB48B800DAC2FA /* marvel-heroes-ios */ = {
 			isa = PBXGroup;
 			children = (
+				A57A490A25BDFEB900A1F63F /* Local Storage */,
 				A515771F25BB5803007B54B3 /* Supporting Files */,
 				A515771925BB5766007B54B3 /* Base */,
 				A515770A25BB5699007B54B3 /* HeroList */,
