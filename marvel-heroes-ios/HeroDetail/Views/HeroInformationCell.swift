@@ -51,7 +51,6 @@ final class HeroInformationCell: UICollectionViewCell {
     func prepareCell(viewModel: HeroDetailViewModel) {
         let name = viewModel.character.name ?? "Name is not available".localized()
         nameLabel.text = name
-        
         let description = viewModel.character.description ?? "Description is not available".localized()
         descLabel.text = description
     }
@@ -60,15 +59,14 @@ final class HeroInformationCell: UICollectionViewCell {
     
     //MARK: - Layout
     private func layoutViews() {
-        contentView.addSubview(nameLabel)
-        nameLabel.layoutToSuperView(to: .top)
+        addSubview(nameLabel)
+        nameLabel.layoutToSuperView(to: .top, inset: 8)
         nameLabel.autoSetDimension(.height, toSize: 24)
         nameLabel.edgeHorizontal(inset: 0)
-//        nameLabel.backgroundColor = .orange
         
-        contentView.addSubview(descLabel)
-        descLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 10)
+        addSubview(descLabel)
+        descLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 6)
         descLabel.edgeHorizontal(inset: 0)
-//        descLabel.backgroundColor = .green
+        descLabel.layoutToSuperView(to: .bottom, inset: -10)
     }
 }

@@ -21,6 +21,7 @@
 		A515773025BB58AB007B54B3 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515772F25BB58AB007B54B3 /* AppFont.swift */; };
 		A515773525BB5A0B007B54B3 /* HeroListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515773425BB5A0B007B54B3 /* HeroListViewModel.swift */; };
 		A515773D25BB5B11007B54B3 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515773C25BB5B11007B54B3 /* CollectionView.swift */; };
+		A53A50D325BDF1D10087E3F0 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A50D225BDF1D10087E3F0 /* LabelCollectionViewCell.swift */; };
 		A5804B3025BB606000A33E8E /* HeroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */; };
 		A5804B3A25BB649600A33E8E /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B3925BB649600A33E8E /* Label.swift */; };
 		A5804B4125BC376100A33E8E /* LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B4025BC376100A33E8E /* LayoutExtension.swift */; };
@@ -90,6 +91,7 @@
 		A515772F25BB58AB007B54B3 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		A515773425BB5A0B007B54B3 /* HeroListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListViewModel.swift; sourceTree = "<group>"; };
 		A515773C25BB5B11007B54B3 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		A53A50D225BDF1D10087E3F0 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5804B3925BB649600A33E8E /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		A5804B4025BC376100A33E8E /* LayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutExtension.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				A5B14B8225BD4A8E00DBA5A9 /* HeroInformationCell.swift */,
 				A5B14B8A25BD8B6200DBA5A9 /* ComicsCell.swift */,
 				A5B14B8F25BD906100DBA5A9 /* ComicsColumnCell.swift */,
+				A53A50D225BDF1D10087E3F0 /* LabelCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				A5804B5B25BC556A00A33E8E /* MarvelService.swift in Sources */,
 				A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */,
 				A515771525BB5734007B54B3 /* BaseViewController.swift in Sources */,
+				A53A50D325BDF1D10087E3F0 /* LabelCollectionViewCell.swift in Sources */,
 				A5804B7925BC63FC00A33E8E /* Page.swift in Sources */,
 				A515773D25BB5B11007B54B3 /* CollectionView.swift in Sources */,
 				A5804B5025BC53F400A33E8E /* RestService.swift in Sources */,
