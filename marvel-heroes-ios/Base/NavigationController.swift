@@ -10,10 +10,12 @@ import UIKit
 
 extension UIViewController {
     
+    ///Adds back "<-" button to left of the Navigation Bar
     public func addBackButton() {
         let backButton = UIButton()
-        let arrowImage = UIImage(named: "back")
+        let arrowImage = UIImage(named: "back")?.withRenderingMode(.alwaysTemplate)
         backButton.setImage(arrowImage, for: .normal)
+        backButton.tintColor = .black
         backButton.addTarget(self, action: #selector(backToVC), for: .touchUpInside)
         let backBarButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = backBarButton
@@ -36,5 +38,12 @@ extension UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
 
+    public func setupTransparentNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) 
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+    }
     
 }
+
