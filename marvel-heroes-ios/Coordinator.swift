@@ -17,9 +17,11 @@ protocol Coordinator: AnyObject {
 
 extension Coordinator {
     func childDidFinish(_ child: Coordinator?) {
+        print("before child count: \(childCoordinators.count)")
         for (index, coordinator) in childCoordinators.enumerated() {
             if coordinator === child {
                 childCoordinators.remove(at: index)
+                print("after child count: \(childCoordinators.count)")
                 break
             }
         }

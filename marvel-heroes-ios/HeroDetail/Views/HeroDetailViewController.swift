@@ -15,6 +15,8 @@ final class HeroDetailViewController: BaseViewController {
     
     
     //MARK: - Variable & Constants
+    var coordinatorDelegate: HeroListCoordiantor!
+    
     private let disposeBag = DisposeBag()
     
     var comicsCellSize: CGFloat {
@@ -28,6 +30,11 @@ final class HeroDetailViewController: BaseViewController {
     
     
     //MARK: - Visual Objects
+    let likeButton: UIButton = {
+        let button = UIButton()
+        return button
+    }()
+    
     let collectionView: UICollectionView = {
         let layout = CustomHeaderLayout()
         layout.scrollDirection = .vertical
@@ -48,18 +55,26 @@ final class HeroDetailViewController: BaseViewController {
         
         setupCollectionView()
         addBackButton()
+        addLikeButton()
         
         self.title = viewModel.character.name ?? ""
         navigationController?.setNavigationBarHidden(false, animated: true)
         
+        
+        updateLikeButton(isLiked: viewModel.didCharacterLiked())
         viewModel.getHeroComics()
         setupBindings()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setupNavigationBar()
+    }
+    
+    override func backToVC() {
+        self.coordinatorDelegate.backToHeroList()
     }
     
     private func setupBindings() {
@@ -68,9 +83,32 @@ final class HeroDetailViewController: BaseViewController {
         viewModel.comics.subscribe { (event) in
             self.collectionView.reloadData()
         }
-
     }
     
+    
+    
+    //MARK: - NavigationBar
+    private func addLikeButton() {
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        let likeBarButton = UIBarButtonItem(customView: likeButton)
+        navigationItem.rightBarButtonItem = likeBarButton
+    }
+    
+    private func updateLikeButton(isLiked: Bool) {
+        if isLiked {
+            likeButton.setImage(UIImage(named: "liked")!, for: .normal)
+        } else {
+            likeButton.setImage(UIImage(named: "like")!, for: .normal)
+        }
+    }
+    
+    @objc func likeButtonTapped() {
+        viewModel.likeButtonTapped()
+        updateLikeButton(isLiked: viewModel.didCharacterLiked())
+    }
+    
+    
+    //MARK: - CollectionView
     private func setupCollectionView() {
         collectionView.register(supplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: HeroDetailHeaderCell.self)
         collectionView.register(cellWithClass: HeroCollectionViewCell.self)

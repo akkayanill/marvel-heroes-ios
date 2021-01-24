@@ -22,6 +22,9 @@
 		A515773525BB5A0B007B54B3 /* HeroListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515773425BB5A0B007B54B3 /* HeroListViewModel.swift */; };
 		A515773D25BB5B11007B54B3 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515773C25BB5B11007B54B3 /* CollectionView.swift */; };
 		A53A50D325BDF1D10087E3F0 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A50D225BDF1D10087E3F0 /* LabelCollectionViewCell.swift */; };
+		A57A490C25BDFEE400A1F63F /* SQLiteConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A490B25BDFEE400A1F63F /* SQLiteConnection.swift */; };
+		A57A491425BDFF5F00A1F63F /* FavoriteHeroesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A491325BDFF5F00A1F63F /* FavoriteHeroesTable.swift */; };
+		A57A491925BDFFF700A1F63F /* LocalDBErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A491825BDFFF700A1F63F /* LocalDBErrors.swift */; };
 		A5804B3025BB606000A33E8E /* HeroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */; };
 		A5804B3A25BB649600A33E8E /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B3925BB649600A33E8E /* Label.swift */; };
 		A5804B4125BC376100A33E8E /* LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5804B4025BC376100A33E8E /* LayoutExtension.swift */; };
@@ -92,6 +95,9 @@
 		A515773425BB5A0B007B54B3 /* HeroListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListViewModel.swift; sourceTree = "<group>"; };
 		A515773C25BB5B11007B54B3 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		A53A50D225BDF1D10087E3F0 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
+		A57A490B25BDFEE400A1F63F /* SQLiteConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteConnection.swift; sourceTree = "<group>"; };
+		A57A491325BDFF5F00A1F63F /* FavoriteHeroesTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteHeroesTable.swift; sourceTree = "<group>"; };
+		A57A491825BDFFF700A1F63F /* LocalDBErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDBErrors.swift; sourceTree = "<group>"; };
 		A5804B2F25BB606000A33E8E /* HeroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5804B3925BB649600A33E8E /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		A5804B4025BC376100A33E8E /* LayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutExtension.swift; sourceTree = "<group>"; };
@@ -221,6 +227,9 @@
 		A57A490A25BDFEB900A1F63F /* Local Storage */ = {
 			isa = PBXGroup;
 			children = (
+				A57A490B25BDFEE400A1F63F /* SQLiteConnection.swift */,
+				A57A491325BDFF5F00A1F63F /* FavoriteHeroesTable.swift */,
+				A57A491825BDFFF700A1F63F /* LocalDBErrors.swift */,
 			);
 			path = "Local Storage";
 			sourceTree = "<group>";
@@ -617,6 +626,8 @@
 			files = (
 				A515770D25BB5720007B54B3 /* HeroListViewController.swift in Sources */,
 				A5D3683125BCAE4B007B4C57 /* HeroDetailHeaderCell.swift in Sources */,
+				A57A491425BDFF5F00A1F63F /* FavoriteHeroesTable.swift in Sources */,
+				A57A490C25BDFEE400A1F63F /* SQLiteConnection.swift in Sources */,
 				A515771B25BB578A007B54B3 /* NavigationController.swift in Sources */,
 				A5804B4825BC506500A33E8E /* HeroListCoordinator.swift in Sources */,
 				A515773025BB58AB007B54B3 /* AppFont.swift in Sources */,
@@ -634,6 +645,7 @@
 				A5A2235825BDA725009FD2CB /* ComicModel.swift in Sources */,
 				A5804B7E25BC658F00A33E8E /* HeroModel.swift in Sources */,
 				A5804B5B25BC556A00A33E8E /* MarvelService.swift in Sources */,
+				A57A491925BDFFF700A1F63F /* LocalDBErrors.swift in Sources */,
 				A5CF8A2125BB48B800DAC2FA /* AppDelegate.swift in Sources */,
 				A515771525BB5734007B54B3 /* BaseViewController.swift in Sources */,
 				A53A50D325BDF1D10087E3F0 /* LabelCollectionViewCell.swift in Sources */,

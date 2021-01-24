@@ -17,6 +17,7 @@ protocol HeroListCoordinatorProtocol: class {
 
 final class HeroListCoordiantor: Coordinator, HeroListCoordinatorProtocol {
     
+    var parentCoordinator: AppCoordinator!
     var childCoordinators = [Coordinator]()
     
     var navigationController: UINavigationController
@@ -34,6 +35,7 @@ final class HeroListCoordiantor: Coordinator, HeroListCoordinatorProtocol {
     func showDetailViewController(_ character: MarvelCharacter) {
         let vc = HeroDetailViewController()
         vc.viewModel.character = character
+        vc.coordinatorDelegate = self
         self.navigationController.pushViewController(vc, animated: true)
     }
     

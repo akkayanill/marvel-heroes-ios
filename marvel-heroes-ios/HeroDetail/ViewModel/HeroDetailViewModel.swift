@@ -19,8 +19,8 @@ final class HeroDetailViewModel {
     var character: MarvelCharacter!
     let loading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     var comics = BehaviorSubject<[ComicResults]>(value: [])
-    //    var alert: BehaviorSubject<Bool>?
-    
+    var heroLiked: BehaviorSubject<Bool> = BehaviorSubject(value: false)
+    var alert: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     
     
     //MARK: - Functions
@@ -56,5 +56,48 @@ final class HeroDetailViewModel {
             //TODO: - show alert
         }
     }
+ 
     
+    
+    //MARK: - Database
+    func likeButtonTapped() {
+        if didCharacterLiked() == true { // Already liked, now remove
+            removeFromFavorites()
+        } else { // like!! <3
+            addFavorites()
+        }
+    }
+    
+    private func addFavorites() {
+        if let _ = self.character.id {
+            try? FavoriteHeroesTable.insertHero(hero: self.character)
+        }
+    }
+    
+    private func removeFromFavorites() {
+        if let id = self.character.id {
+            try? FavoriteHeroesTable.removeHero(id: "\(id)")
+        }
+    }
+    
+    ///Checks if the Character liked before.
+    func didCharacterLiked() -> Bool {
+        if let id = self.character.id {
+            guard let result = try? FavoriteHeroesTable.isLiked(id: "\(id)") else { return false }
+            
+            var favArr = [String]()
+            for row in result {
+                favArr.append(row[0] as! String)
+            }
+            
+            print("favArr: \(favArr.count)")
+            if favArr.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        }
+        return false
+    }
+
 }
