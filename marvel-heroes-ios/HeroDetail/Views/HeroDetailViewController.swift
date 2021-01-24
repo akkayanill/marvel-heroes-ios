@@ -30,7 +30,7 @@ final class HeroDetailViewController: BaseViewController {
     
     
     //MARK: - Visual Objects
-    let likeButton: UIButton = {
+    let favoriteButton: UIButton = {
         let button = UIButton()
         return button
     }()
@@ -89,16 +89,16 @@ final class HeroDetailViewController: BaseViewController {
     
     //MARK: - NavigationBar
     private func addLikeButton() {
-        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        let likeBarButton = UIBarButtonItem(customView: likeButton)
+        favoriteButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        let likeBarButton = UIBarButtonItem(customView: favoriteButton)
         navigationItem.rightBarButtonItem = likeBarButton
     }
     
     private func updateLikeButton(isLiked: Bool) {
         if isLiked {
-            likeButton.setImage(UIImage(named: "liked")!, for: .normal)
+            favoriteButton.setImage(UIImage(named: "liked")!, for: .normal)
         } else {
-            likeButton.setImage(UIImage(named: "like")!, for: .normal)
+            favoriteButton.setImage(UIImage(named: "like")!, for: .normal)
         }
     }
     

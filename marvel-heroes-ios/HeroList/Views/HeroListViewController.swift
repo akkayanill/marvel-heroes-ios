@@ -47,6 +47,7 @@ final class HeroListViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.register(HeroCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         
+        addFavoritesButton()
         
         // Fetch Heroes
         viewModel.getHeroList(page: 0)
@@ -62,7 +63,6 @@ final class HeroListViewController: BaseViewController {
     private func setupBindings() {
         //Loading Animation Show & Hide
         viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
-        
         
         
         //
@@ -81,7 +81,6 @@ final class HeroListViewController: BaseViewController {
                 cell.animateCell()
                 
                 if try! self.viewModel.loading.value() == false && indexPath.row > (Page().limit - 4) * self.page { // Can fetch the next page
-//                    print("☀️☀️☀️ fetch : \(try! self.viewModel.loading.value())")
                     self.viewModel.getHeroList(page: self.page)
                     self.page += 1
                 }
@@ -96,6 +95,18 @@ final class HeroListViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
     
+    private func addFavoritesButton() {
+        let favButton = UIButton()
+        favButton.setTitle("Favorites".localized(), for: .normal)
+        favButton.setTitleColor(.black, for: .normal)
+        favButton.addTarget(self, action: #selector(favoritesButtonTapped), for: .touchUpInside)
+        let likeBarButton = UIBarButtonItem(customView: favButton)
+        navigationItem.rightBarButtonItem = likeBarButton
+    }
+    
+    @objc func favoritesButtonTapped() {
+        coordinatorDelegate?.showFavoriteHeroes()
+    }
     
     //MARK: - UI & Layout
     override func layoutViews() {
