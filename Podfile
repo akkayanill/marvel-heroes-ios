@@ -19,6 +19,7 @@ target 'marvel-heroes-ios' do
   pod 'AlamofireObjectMapper', '~> 5.2'
   pod 'ObjectMapper'
   pod 'CryptoSwift' #, '~> 1.3.8'
+  pod 'SQLite.swift'
 
   target 'marvel-heroes-iosTests' do
     inherit! :search_paths

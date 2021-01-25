@@ -20,11 +20,19 @@ final class LabelCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         layoutViews()
-        comicsLabel.text = "Comics".localized()
+     
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func prepareCell(comicCount: Int) {
+        if comicCount == 0 {
+            comicsLabel.text = "Comics are not available".localized()
+        } else {
+            comicsLabel.text = "Comics".localized()
+        }
     }
     
     

@@ -11,12 +11,14 @@ import UIKit
 protocol HeroListCoordinatorProtocol: class {
     func showDetailViewController(_ character: MarvelCharacter)
     func backToHeroList()
+    func showFavoriteHeroes()
 }
 
 
 
 final class HeroListCoordiantor: Coordinator, HeroListCoordinatorProtocol {
     
+    var parentCoordinator: AppCoordinator!
     var childCoordinators = [Coordinator]()
     
     var navigationController: UINavigationController
@@ -34,6 +36,13 @@ final class HeroListCoordiantor: Coordinator, HeroListCoordinatorProtocol {
     func showDetailViewController(_ character: MarvelCharacter) {
         let vc = HeroDetailViewController()
         vc.viewModel.character = character
+        vc.coordinatorDelegate = self
+        self.navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func showFavoriteHeroes() {
+        let vc = FavoriteHeroesListViewController()
+        vc.coordinatorDelegate = self
         self.navigationController.pushViewController(vc, animated: true)
     }
     

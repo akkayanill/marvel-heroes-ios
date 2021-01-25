@@ -20,6 +20,7 @@ class AppCoordinator: Coordinator {
     
     func start() {
         let heroListChild = HeroListCoordiantor(navigationController: self.navigationController)
+        heroListChild.parentCoordinator = self
         childCoordinators.append(heroListChild)
         heroListChild.start()
     }

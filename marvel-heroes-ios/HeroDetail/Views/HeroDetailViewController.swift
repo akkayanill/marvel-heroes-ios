@@ -15,6 +15,13 @@ final class HeroDetailViewController: BaseViewController {
     
     
     //MARK: - Variable & Constants
+    
+    //Cells
+    var informationCell: HeroInformationCell?
+    var comicTextCell: LabelCollectionViewCell?
+    
+    var coordinatorDelegate: HeroListCoordiantor!
+    
     private let disposeBag = DisposeBag()
     
     var comicsCellSize: CGFloat {
@@ -28,6 +35,11 @@ final class HeroDetailViewController: BaseViewController {
     
     
     //MARK: - Visual Objects
+    let favoriteButton: UIButton = {
+        let button = UIButton()
+        return button
+    }()
+    
     let collectionView: UICollectionView = {
         let layout = CustomHeaderLayout()
         layout.scrollDirection = .vertical
@@ -47,19 +59,28 @@ final class HeroDetailViewController: BaseViewController {
         super.viewDidLoad()
         
         setupCollectionView()
+        
         addBackButton()
+        addLikeButton()
         
         self.title = viewModel.character.name ?? ""
         navigationController?.setNavigationBarHidden(false, animated: true)
         
+        
+        updateLikeButton(isLiked: viewModel.didCharacterLiked())
         viewModel.getHeroComics()
         setupBindings()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setupNavigationBar()
+    }
+    
+    override func backToVC() {
+        self.coordinatorDelegate.backToHeroList()
     }
     
     private func setupBindings() {
@@ -68,9 +89,32 @@ final class HeroDetailViewController: BaseViewController {
         viewModel.comics.subscribe { (event) in
             self.collectionView.reloadData()
         }
-
     }
     
+    
+    
+    //MARK: - NavigationBar
+    private func addLikeButton() {
+        favoriteButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        let likeBarButton = UIBarButtonItem(customView: favoriteButton)
+        navigationItem.rightBarButtonItem = likeBarButton
+    }
+    
+    private func updateLikeButton(isLiked: Bool) {
+        if isLiked {
+            favoriteButton.setImage(UIImage(named: "liked")!, for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(named: "like")!, for: .normal)
+        }
+    }
+    
+    @objc func likeButtonTapped() {
+        viewModel.likeButtonTapped()
+        updateLikeButton(isLiked: viewModel.didCharacterLiked())
+    }
+    
+    
+    //MARK: - CollectionView
     private func setupCollectionView() {
         collectionView.register(supplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: HeroDetailHeaderCell.self)
         collectionView.register(cellWithClass: HeroCollectionViewCell.self)
@@ -120,17 +164,21 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         
         return 1
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 { // Hero Information
-            let informationCell = collectionView.dequeueReusableCell(withClass: HeroInformationCell.self, for: indexPath)
-            informationCell.prepareCell(viewModel: self.viewModel)
+            self.informationCell = collectionView.dequeueReusableCell(withClass: HeroInformationCell.self, for: indexPath)
+            informationCell!.prepareCell(viewModel: self.viewModel)
             
-            return informationCell
+            return informationCell!
             
         } else if indexPath.section == 1 { // Comics Label
-            let comicTextCell = collectionView.dequeueReusableCell(withClass: LabelCollectionViewCell.self, for: indexPath)
-            return comicTextCell
+            comicTextCell = collectionView.dequeueReusableCell(withClass: LabelCollectionViewCell.self, for: indexPath)
+            let comicCount = (try? viewModel.comics.value().count) ?? 0
+            comicTextCell!.prepareCell(comicCount: comicCount)
+
+            return comicTextCell!
             
         } else { // Comics
             let comicsCell = collectionView.dequeueReusableCell(withClass: ComicsCell.self, for: indexPath)
@@ -171,9 +219,10 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let estimatedFrame = self.viewModel.getEstimatedDescriptionHeight()
+        let estimatedFrame = self.viewModel.getEstimatedDescriptionHeight(font: self.informationCell?.descFont, text: viewModel.character.description)
+        
         if indexPath.section == 0 { // Hero information
-            return CGSize(width: screenSize.width-40, height: estimatedFrame.height + 60)
+            return CGSize(width: screenSize.width-40, height: estimatedFrame + 60)
         } else if indexPath.section == 1 { // Comics Label
             return CGSize(width: screenSize.width-40, height: 24)
         } else { // Comics
