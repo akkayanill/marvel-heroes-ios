@@ -21,9 +21,9 @@ class FavoriteHeroesViewModel {
         if let result = FavoriteHeroesTable.getFavoriteHeroes() {
             var characters = [MarvelCharacter]()
             for row in result {
-//                print("hero name: \(row[1] as! String)")
-//                print("hero url: \(row[3] as! String)")
-                characters.append(MarvelCharacter(id: Int(row[0] as! String)!, name: row[1] as! String, desc: row[2] as! String, image: row[3] as! String))
+
+                let thumnail = Thumbnail(path: row[3] as! String, fExtension: row[4] as! String)
+                characters.append(MarvelCharacter(id: Int(row[0] as! String)!, name: row[1] as! String, desc: row[2] as! String, thumbnail: thumnail))
             }
             self.characters.onNext(characters)
         }
