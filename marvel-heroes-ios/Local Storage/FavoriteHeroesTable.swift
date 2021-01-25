@@ -27,7 +27,9 @@ class FavoriteHeroesTable {
     static let hero_id = Expression<String>("hero_id")
     static let hero_name = Expression<String>("hero_name")
     static let hero_desc = Expression<String?>("hero_desc")
-    static let hero_image = Expression<String?>("hero_image")
+    static let hero_image_path = Expression<String?>("hero_image_path")
+    static let hero_image_extension = Expression<String?>("hero_image_extension")
+    
     
     static func create() throws {
         guard let database = LocalDBConnection.shared.conn else {
@@ -39,7 +41,8 @@ class FavoriteHeroesTable {
                 t.column(hero_id)
                 t.column(hero_name)
                 t.column(hero_desc)
-                t.column(hero_image)
+                t.column(hero_image_path)
+                t.column(hero_image_extension)
             })
             
         } catch {
@@ -52,8 +55,6 @@ class FavoriteHeroesTable {
             throw LocalDBErrors.ConnectionError
         }
         
-        //        let nextId = try getNextRecordId()
-        
         do {
             try database.transaction {
                 try database.run(table.insert(
@@ -61,7 +62,8 @@ class FavoriteHeroesTable {
                                     hero_id <- String(hero.id!),
                                     hero_name <- hero.name ?? "",
                                     hero_desc <- hero.description,
-                                    hero_image <- hero.thumbnail!.url!.absoluteString))
+                                    hero_image_path <- hero.thumbnail!.path!,
+                                    hero_image_extension <- hero.thumbnail!.fExtension))
             }
         } catch let error {
             print("insert error: \(error)")
@@ -106,7 +108,7 @@ class FavoriteHeroesTable {
             return nil
         }
         
-        let query = "SELECT hero_id, hero_name, hero_desc, hero_image FROM favorites"
+        let query = "SELECT hero_id, hero_name, hero_desc, hero_image_path, hero_image_extension FROM favorites"
         
         do {
             let result = try database.prepare(query)

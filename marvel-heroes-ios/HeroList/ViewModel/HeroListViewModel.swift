@@ -30,7 +30,6 @@ final class HeroListViewModel {
             self.loading.onNext(false)
             if let heroes = event.element?.data?.results {
                 if page > 0 {
-//                    try! self.characters.value().append(contentsOf: )
                     print("appending")
                     do {
                         try self.characters.self.onNext(self.characters.value() + heroes) // concatenating older value with new

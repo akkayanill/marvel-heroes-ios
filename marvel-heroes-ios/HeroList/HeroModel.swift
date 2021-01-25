@@ -19,13 +19,13 @@ struct HeroModel : Mappable {
     var attributionHTML : String?
     var etag : String?
     var data : Data?
-
+    
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         code <- map["code"]
         status <- map["status"]
         copyright <- map["copyright"]
@@ -34,7 +34,7 @@ struct HeroModel : Mappable {
         etag <- map["etag"]
         data <- map["data"]
     }
-
+    
 }
 
 
@@ -42,7 +42,13 @@ struct HeroModel : Mappable {
 //MARK: - Results
 struct MarvelCharacter : Mappable {
     var id : Int?
-    var name : String?
+    var name : String {
+        if heroName == "" || heroName == nil {
+            return "Hero name is not available".localized()
+        } else {
+            return heroName!
+        }
+    }
     var description: String {
         if desc == "" || desc == nil {
             return "Description is not available".localized()
@@ -50,6 +56,7 @@ struct MarvelCharacter : Mappable {
             return desc!
         }
     }
+    private var heroName: String?
     private var desc : String?
     var modified : String?
     var thumbnail : Thumbnail?
@@ -59,23 +66,23 @@ struct MarvelCharacter : Mappable {
     var stories : Stories?
     var events : Events?
     var urls : [Urls]?
-
-    init(id: Int, name: String, desc: String, image: String) {
+    
+    
+    init(id: Int?, name: String?, desc: String?, thumbnail: Thumbnail?) {
         self.id = id
-        self.name = name
+        self.heroName = name
         self.desc  = desc
-        let url = URL(string: image)!
-        self.thumbnail?.url = url
+        self.thumbnail = thumbnail
     }
     
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         id <- map["id"]
-        name <- map["name"]
+        heroName <- map["name"]
         desc <- map["description"]
         modified <- map["modified"]
         thumbnail <- map["thumbnail"]
@@ -86,7 +93,7 @@ struct MarvelCharacter : Mappable {
         events <- map["events"]
         urls <- map["urls"]
     }
-
+    
 }
 
 
@@ -97,42 +104,42 @@ struct Series : Mappable {
     var collectionURI : String?
     var items : [Items]?
     var returned : Int?
-
+    
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         available <- map["available"]
         collectionURI <- map["collectionURI"]
         items <- map["items"]
         returned <- map["returned"]
     }
-
+    
 }
 
 
- 
+
 //MARK: - Stories
 struct Stories : Mappable {
     var available : Int?
     var collectionURI : String?
     var items : [Items]?
     var returned : Int?
-
+    
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         available <- map["available"]
         collectionURI <- map["collectionURI"]
         items <- map["items"]
         returned <- map["returned"]
     }
-
+    
 }
 
 
@@ -142,25 +149,28 @@ struct Thumbnail : Mappable {
     var path : String?
     var fExtension : String?
     
+    init(path: String, fExtension: String) {
+        self.path = path
+        self.fExtension = fExtension
+    }
+    
     var url: URL? {
         get {
             guard let path = path, let fExtension = fExtension else { return nil }
-            return URL(string: "\(path).\(fExtension)")
-        }
-        set {
-            
+            let url = URL(string: "\(path).\(fExtension)")
+            return url
         }
     }
     
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
         path <- map["path"]
         fExtension <- map["extension"]
     }
-
+    
 }
 
 
@@ -169,40 +179,40 @@ struct Thumbnail : Mappable {
 struct Urls : Mappable {
     var type : String?
     var url : String?
-
+    
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         type <- map["type"]
         url <- map["url"]
     }
-
+    
 }
 
 
- 
+
 //MARK: - Comics
 struct Comics : Mappable {
     var available : Int?
     var collectionURI : String?
     var items : [Items]?
     var returned : Int?
-
+    
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         available <- map["available"]
         collectionURI <- map["collectionURI"]
         items <- map["items"]
         returned <- map["returned"]
     }
-
+    
 }
 
 
@@ -214,22 +224,22 @@ struct Data : Mappable {
     var total : Int?
     var count : Int?
     var results : [MarvelCharacter]?
-
+    
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         offset <- map["offset"]
         limit <- map["limit"]
         total <- map["total"]
         count <- map["count"]
         results <- map["results"]
     }
-
+    
 }
- 
+
 
 
 //MARK: - Events
@@ -238,19 +248,19 @@ struct Events : Mappable {
     var collectionURI : String?
     var items : [Items]?
     var returned : Int?
-
+    
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         available <- map["available"]
         collectionURI <- map["collectionURI"]
         items <- map["items"]
         returned <- map["returned"]
     }
-
+    
 }
 
 
@@ -259,15 +269,15 @@ struct Events : Mappable {
 struct Items : Mappable {
     var resourceURI : String?
     var name : String?
-
+    
     init?(map: Map) {
-
+        
     }
-
+    
     mutating func mapping(map: Map) {
-
+        
         resourceURI <- map["resourceURI"]
         name <- map["name"]
     }
-
+    
 }

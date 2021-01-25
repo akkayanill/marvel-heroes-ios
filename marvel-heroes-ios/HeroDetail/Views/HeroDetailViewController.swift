@@ -15,6 +15,11 @@ final class HeroDetailViewController: BaseViewController {
     
     
     //MARK: - Variable & Constants
+    
+    //Cells
+    var informationCell: HeroInformationCell?
+    var comicTextCell: LabelCollectionViewCell?
+    
     var coordinatorDelegate: HeroListCoordiantor!
     
     private let disposeBag = DisposeBag()
@@ -54,6 +59,7 @@ final class HeroDetailViewController: BaseViewController {
         super.viewDidLoad()
         
         setupCollectionView()
+        
         addBackButton()
         addLikeButton()
         
@@ -158,17 +164,21 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         
         return 1
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 { // Hero Information
-            let informationCell = collectionView.dequeueReusableCell(withClass: HeroInformationCell.self, for: indexPath)
-            informationCell.prepareCell(viewModel: self.viewModel)
+            self.informationCell = collectionView.dequeueReusableCell(withClass: HeroInformationCell.self, for: indexPath)
+            informationCell!.prepareCell(viewModel: self.viewModel)
             
-            return informationCell
+            return informationCell!
             
         } else if indexPath.section == 1 { // Comics Label
-            let comicTextCell = collectionView.dequeueReusableCell(withClass: LabelCollectionViewCell.self, for: indexPath)
-            return comicTextCell
+            comicTextCell = collectionView.dequeueReusableCell(withClass: LabelCollectionViewCell.self, for: indexPath)
+            let comicCount = (try? viewModel.comics.value().count) ?? 0
+            comicTextCell!.prepareCell(comicCount: comicCount)
+
+            return comicTextCell!
             
         } else { // Comics
             let comicsCell = collectionView.dequeueReusableCell(withClass: ComicsCell.self, for: indexPath)
@@ -209,9 +219,10 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let estimatedFrame = self.viewModel.getEstimatedDescriptionHeight()
+        let estimatedFrame = self.viewModel.getEstimatedDescriptionHeight(font: self.informationCell?.descFont, text: viewModel.character.description)
+        
         if indexPath.section == 0 { // Hero information
-            return CGSize(width: screenSize.width-40, height: estimatedFrame.height + 60)
+            return CGSize(width: screenSize.width-40, height: estimatedFrame + 60)
         } else if indexPath.section == 1 { // Comics Label
             return CGSize(width: screenSize.width-40, height: 24)
         } else { // Comics

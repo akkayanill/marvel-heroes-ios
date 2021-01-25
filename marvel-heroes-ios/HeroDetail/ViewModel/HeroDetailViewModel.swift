@@ -24,14 +24,13 @@ final class HeroDetailViewModel {
     
     
     //MARK: - Functions
-    func getEstimatedDescriptionHeight() -> CGRect{
+    func getEstimatedDescriptionHeight(font: UIFont?, text: String) -> CGFloat {
+        guard let font = font else {return 0.0}
+        
         let size = CGSize(width: screenSize.width-40, height: 1000)
+        let estimatedFrame = NSString(string: text).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
         
-        let description = self.character.description
-        //            print("\n\n ********** description:  \(description)")
-        let estimatedFrame = NSString(string: description).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : AppFont.Regular.font(size: 12)], context: nil)
-        
-        return estimatedFrame
+        return estimatedFrame.height
     }
     
     
@@ -90,7 +89,6 @@ final class HeroDetailViewModel {
                 favArr.append(row[0] as! String)
             }
             
-            print("favArr: \(favArr.count)")
             if favArr.count > 0 {
                 return true
             } else {
