@@ -45,8 +45,7 @@ final class HeroListViewController: BaseViewController {
         super.viewDidLoad()
         
         self.title = "Heroes".localized()
-//        collectionView.delegate = self
-//        collectionView.register(HeroCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+
         
         addFavoritesButton()
         
@@ -63,7 +62,8 @@ final class HeroListViewController: BaseViewController {
     
     private func setupBindings() {
         //Loading Animation Show & Hide
-        viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
+        viewModel.loading.bind(to: self.rx.isAnimating)
+            .disposed(by: self.disposeBag)
         
         
         //
@@ -80,11 +80,7 @@ final class HeroListViewController: BaseViewController {
         collectionView.rx.willDisplayCell
             .subscribe(onNext: ({ (cell,indexPath) in
                 cell.animateCell()
-                
-                if try! self.viewModel.loading.value() == false && indexPath.row > (Page().limit - 4) * self.page { // Can fetch the next page
-                    self.viewModel.getHeroList(page: self.page)
-                    self.page += 1
-                }
+                self.viewModel.checkPaging(indexPath: indexPath)
             })).disposed(by: disposeBag)
         
         
