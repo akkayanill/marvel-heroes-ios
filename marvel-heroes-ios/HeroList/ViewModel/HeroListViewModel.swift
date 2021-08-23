@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 
-final class HeroListViewModel: BasePagination {
+final class HeroListViewModel: BaseViewModel, BasePagination {
     
     
     
@@ -17,8 +17,7 @@ final class HeroListViewModel: BasePagination {
     var page: Int = 0
     
     func checkPaging(indexPath: IndexPath) {
-        
-        if try! (self.loading.value() == false) && indexPath.row > (Page().limit - 4) * self.page { // Can fetch the next page
+        if try! (self.loading.value() == false) && (indexPath.row > (Page().limit - 4) * self.page) { // Can fetch the next page
             self.page += 1
             self.getHeroList(page: self.page)
         }
@@ -28,12 +27,6 @@ final class HeroListViewModel: BasePagination {
     
   
     //MARK: - Variables
-    private let disposeBag = DisposeBag()
-    
-    
-//    var heroListNetworkResult = PublishSubject<NetworkResult>()
-    let loading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
-    
     var characters = BehaviorSubject<[MarvelCharacter]>(value: [])
     
     

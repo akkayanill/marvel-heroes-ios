@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 
-class FavoriteHeroesViewModel {
+final class FavoriteHeroesViewModel {
     
     
     //MARK: - Variables
@@ -28,10 +28,5 @@ class FavoriteHeroesViewModel {
             self.characters.onNext(characters)
         }
     }
-    
-}
-
-
-extension MarvelCharacter {
     
 }

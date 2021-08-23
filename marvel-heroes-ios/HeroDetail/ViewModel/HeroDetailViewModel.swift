@@ -11,13 +11,11 @@ import RxSwift
 
 
 
-final class HeroDetailViewModel {
+final class HeroDetailViewModel: BaseViewModel {
     
     
     //MARK: - Variables
-    private let disposeBag = DisposeBag()
     var character: MarvelCharacter!
-    let loading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     var comics = BehaviorSubject<[ComicResults]>(value: [])
     var heroLiked: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     
