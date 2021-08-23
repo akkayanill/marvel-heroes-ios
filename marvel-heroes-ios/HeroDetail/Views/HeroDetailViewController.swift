@@ -217,7 +217,7 @@ extension HeroDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let estimatedFrame = self.viewModel.getEstimatedDescriptionHeight(font: self.informationCell?.descFont, text: viewModel.character.description)
+        let estimatedFrame = self.viewModel.getEstimatedDescriptionHeight(width: screenSize.width-40, font: self.informationCell?.descFont, text: viewModel.character.description)
         
         if indexPath.section == 0 { // Hero information
             return CGSize(width: screenSize.width-40, height: estimatedFrame + 60)

@@ -20,14 +20,13 @@ final class HeroDetailViewModel {
     let loading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     var comics = BehaviorSubject<[ComicResults]>(value: [])
     var heroLiked: BehaviorSubject<Bool> = BehaviorSubject(value: false)
-//    var alert: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     
     
     //MARK: - Functions
-    func getEstimatedDescriptionHeight(font: UIFont?, text: String) -> CGFloat {
+    func getEstimatedDescriptionHeight(width: CGFloat, font: UIFont?, text: String) -> CGFloat {
         guard let font = font else {return 0.0}
         
-        let size = CGSize(width: screenSize.width-40, height: 1000)
+        let size = CGSize(width: width, height: 1000)
         let estimatedFrame = NSString(string: text).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
         
         return estimatedFrame.height
@@ -57,9 +56,9 @@ final class HeroDetailViewModel {
     
     //MARK: - Database
     func likeButtonTapped() {
-        if didCharacterLiked() == true { // Already liked, now remove
+        if didCharacterLiked() == true { // Already liked, Remove now
             removeFromFavorites()
-        } else { // like!! <3
+        } else { // Like
             addFavorites()
         }
     }
