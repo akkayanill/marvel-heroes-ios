@@ -47,6 +47,7 @@ enum MarvelService: RestService {
         }
     }
     
+    
     func path() -> String {
         let timestamp = Int(Date().timeIntervalSince1970)
         let hash = "\(timestamp)\(PRIVATE_API_KEY)\(PUBLIC_API_KEY)"

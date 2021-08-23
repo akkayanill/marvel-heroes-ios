@@ -20,7 +20,7 @@ final class HeroDetailViewModel {
     let loading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     var comics = BehaviorSubject<[ComicResults]>(value: [])
     var heroLiked: BehaviorSubject<Bool> = BehaviorSubject(value: false)
-    var alert: BehaviorSubject<Bool> = BehaviorSubject(value: false)
+//    var alert: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     
     
     //MARK: - Functions
