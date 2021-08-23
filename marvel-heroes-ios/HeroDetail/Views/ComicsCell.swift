@@ -14,7 +14,7 @@ final class ComicsCell: UICollectionViewCell {
     
     
     //MARK: - Visual Objects
-    private let imageView: UIImageView = {
+    lazy private var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
@@ -24,7 +24,7 @@ final class ComicsCell: UICollectionViewCell {
     }()
     
     
-    private let nameLabel: TTTAttributedLabel = {
+    lazy private var nameLabel: TTTAttributedLabel = {
         let label = TTTAttributedLabel(frame: .zero)
         label.verticalAlignment = .center
         label.font = AppFont.SemiBold.font(size: 12)
@@ -54,8 +54,6 @@ final class ComicsCell: UICollectionViewCell {
     func prepareCell(comic: ComicResults) {
         nameLabel.text = comic.title
         imageView.kf.setImage(with: comic.thumbnail?.url)
-        //nameLabel.text = "justice league 2017 djgngjnsldgj lsdjgnsdlgjn"
-        //imageView.image = UIImage(named: "comic-dummy")
     }
     
     

@@ -9,15 +9,21 @@ import UIKit
 import SwifterSwift
 import NVActivityIndicatorView
 import PureLayout
+import RxSwift
 
-protocol BaseViewControllerProtocol: class {
+protocol BaseViewControllerProtocol {
     func layoutViews()
 }
 
 class BaseViewController: UIViewController, BaseViewControllerProtocol, NVActivityIndicatorViewable {
 
     
+    
+    
     //MARK: - Variables
+    let disposeBag = DisposeBag()
+    
+    
     
     
     //MARK: - View Appearence
@@ -37,11 +43,4 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol, NVActivi
     
     //MARK: - UI & Layout
     func layoutViews() {}
-    
-    
-//    @objc func dismissVC() {
-//        self.view.endEditing(true)
-//        self.dismiss(animated: true, completion: nil)
-//    }
-    
 }

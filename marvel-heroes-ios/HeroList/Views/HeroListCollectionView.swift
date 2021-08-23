@@ -9,12 +9,16 @@ import Foundation
 import UIKit
 
 
-class HeroListCollectionView: CollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+class HeroListCollectionView: CollectionView {
+    
     
     
     //MARK: - Variables
     let cellId = "HeroCellId"
     
+    
+    
+    //MARK: - Initialization
     override init() {
         super.init()
         
@@ -29,10 +33,15 @@ class HeroListCollectionView: CollectionView, UICollectionViewDelegate, UICollec
     var cellSize: CGFloat {
         return screenSize.width/2.0 - 30.0
     }
+  
+}
+
+
+
+
+//MARK: - UICollectionView Delegate
+extension HeroListCollectionView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    
-    
-    //MARK: - UICollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: cellSize, height: cellSize+24)
     }
@@ -44,5 +53,5 @@ class HeroListCollectionView: CollectionView, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 24.0
     }
-    
+
 }

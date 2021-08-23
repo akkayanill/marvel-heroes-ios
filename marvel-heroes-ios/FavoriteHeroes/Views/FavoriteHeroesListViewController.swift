@@ -20,8 +20,6 @@ class FavoriteHeroesListViewController: BaseViewController {
     
     
     //MARK: - Variables & Constants
-    private let disposeBag = DisposeBag()
-    
     let viewModel = FavoriteHeroesViewModel()
     
     let collectionView = HeroListCollectionView()

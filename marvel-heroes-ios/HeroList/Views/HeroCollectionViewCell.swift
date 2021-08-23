@@ -18,7 +18,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
     
     
     //MARK: - Visual Objects
-    private let imageView: UIImageView = {
+    lazy private var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
@@ -27,7 +27,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
         return imgView
     }()
     
-    private let blackBottomView: UIView = {
+    lazy private var blackBottomView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         view.cornerRadius = 24
@@ -35,7 +35,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    private let nameLabel: TTTAttributedLabel = {
+    lazy private var nameLabel: TTTAttributedLabel = {
         let label = TTTAttributedLabel(frame: .zero)
         label.verticalAlignment = .center
         label.font = AppFont.SemiBold.font(size: 15)
@@ -66,7 +66,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
     
     
     func prepareCell(_ character: MarvelCharacter) {
-        let name = character.name ?? "Name Unavailable".localized()
+        let name = character.name
         nameLabel.text = name
         
         if let url = character.thumbnail?.url {

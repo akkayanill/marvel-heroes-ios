@@ -27,7 +27,7 @@ class LocalDBConnection {
         
         do {
             conn = try Connection(path)
-        } catch let error {
+        } catch {
             conn = nil
         }
     }

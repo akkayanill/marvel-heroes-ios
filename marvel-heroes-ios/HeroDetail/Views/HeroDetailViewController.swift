@@ -22,8 +22,6 @@ final class HeroDetailViewController: BaseViewController {
     
     var coordinatorDelegate: HeroListCoordiantor!
     
-    private let disposeBag = DisposeBag()
-    
     var comicsCellSize: CGFloat {
         return screenSize.width/2.0 - 30.0
     }

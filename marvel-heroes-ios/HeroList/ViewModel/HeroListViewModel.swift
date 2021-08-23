@@ -12,6 +12,7 @@ import RxSwift
 final class HeroListViewModel: BasePagination {
     
     
+    
     //MARK: - BasePagination
     var page: Int = 0
     

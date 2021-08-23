@@ -60,7 +60,7 @@ class FavoriteHeroesTable {
                 try database.run(table.insert(
                                     //                                    recordId <- Int64(nextId),
                                     hero_id <- String(hero.id!),
-                                    hero_name <- hero.name ?? "",
+                                    hero_name <- hero.name,
                                     hero_desc <- hero.description,
                                     hero_image_path <- hero.thumbnail!.path!,
                                     hero_image_extension <- hero.thumbnail!.fExtension))

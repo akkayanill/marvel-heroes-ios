@@ -13,7 +13,7 @@ final class LabelCollectionViewCell: UICollectionViewCell {
     
     
     //MARK: - Visual Objects
-    private let comicsLabel = Label(font: AppFont.Bold.font(size: 18), textColor: .black, textAlignment: .left, numberOfLines: 1)
+    lazy private var comicsLabel = Label(font: AppFont.Bold.font(size: 18), textColor: .black, textAlignment: .left, numberOfLines: 1)
     
     //MARK: - Initialization
     override init(frame: CGRect) {
