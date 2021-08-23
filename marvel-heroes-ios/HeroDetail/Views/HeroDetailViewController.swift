@@ -63,7 +63,7 @@ final class HeroDetailViewController: BaseViewController {
         addBackButton()
         addLikeButton()
         
-        self.title = viewModel.character.name ?? ""
+        self.title = viewModel.character.name
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         
@@ -86,8 +86,8 @@ final class HeroDetailViewController: BaseViewController {
     private func setupBindings() {
         viewModel.loading.bind(to: self.rx.isAnimating).disposed(by: self.disposeBag)
         
-        viewModel.comics.subscribe { (event) in
-            self.collectionView.reloadData()
+        let _ = viewModel.comics.subscribe { [weak self] event in
+            self?.collectionView.reloadData()
         }
     }
     

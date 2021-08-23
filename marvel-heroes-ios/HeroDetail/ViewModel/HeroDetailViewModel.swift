@@ -40,15 +40,12 @@ final class HeroDetailViewModel {
         if let characterID = self.character.id {
             self.loading.onNext(true)
             
-            MarvelService.getComics(id: characterID).request(to: ComicModel.self).subscribe { event in
+            MarvelService.getComics(id: characterID).request(to: ComicModel.self).subscribe { [weak self] event in
                 
-                self.loading.onNext(false)
+                self?.loading.onNext(false)
                 
                 if let comics = event.element?.data?.results {
-                    self.comics.onNext(comics)
-                    //                    comics.forEach { (mc) in
-                    //                        print("*********** name: \(mc.title ?? "unknown") *********")
-                    //                    }
+                    self?.comics.onNext(comics)
                 }
             }.disposed(by: disposeBag)
         } else {
