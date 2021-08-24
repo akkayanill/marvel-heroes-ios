@@ -14,9 +14,9 @@ final class HeroInformationCell: UICollectionViewCell {
     
     //MARK: - Visual Object
     var descFont: UIFont = AppFont.Regular.font(size: 12)
-    lazy private var nameLabel = Label(font: AppFont.Bold.font(size: 18), textColor: .black, textAlignment: .left, numberOfLines: 1)
+    private var nameLabel = Label(font: AppFont.Bold.font(size: 18), textColor: .black, textAlignment: .left, numberOfLines: 1)
     
-    lazy private var descLabel = Label(font: AppFont.Regular.font(size: 12), textColor: .black, textAlignment: .left, numberOfLines: 0)
+    private var descLabel = Label(font: AppFont.Regular.font(size: 12), textColor: .black, textAlignment: .left, numberOfLines: 0)
     
     
     

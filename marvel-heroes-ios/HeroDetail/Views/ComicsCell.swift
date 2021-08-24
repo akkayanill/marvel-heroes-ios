@@ -14,7 +14,7 @@ final class ComicsCell: UICollectionViewCell {
     
     
     //MARK: - Visual Objects
-    lazy private var imageView: UIImageView = {
+    private var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
@@ -24,7 +24,7 @@ final class ComicsCell: UICollectionViewCell {
     }()
     
     
-    lazy private var nameLabel: TTTAttributedLabel = {
+    private var nameLabel: TTTAttributedLabel = {
         let label = TTTAttributedLabel(frame: .zero)
         label.verticalAlignment = .center
         label.font = AppFont.SemiBold.font(size: 12)

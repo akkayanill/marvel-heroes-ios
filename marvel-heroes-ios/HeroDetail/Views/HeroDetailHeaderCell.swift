@@ -15,7 +15,7 @@ final class HeroDetailHeaderCell: UICollectionViewCell {
     
     internal var animator: UIViewPropertyAnimator?
     
-    lazy private var imageView: UIImageView = {
+    private var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill

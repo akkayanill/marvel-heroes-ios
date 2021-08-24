@@ -18,7 +18,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
     
     
     //MARK: - Visual Objects
-    lazy private var imageView: UIImageView = {
+    private var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
@@ -27,7 +27,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
         return imgView
     }()
     
-    lazy private var blackBottomView: UIView = {
+    private var blackBottomView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         view.cornerRadius = 24
@@ -35,7 +35,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    lazy private var nameLabel: TTTAttributedLabel = {
+    private var nameLabel: TTTAttributedLabel = {
         let label = TTTAttributedLabel(frame: .zero)
         label.verticalAlignment = .center
         label.font = AppFont.SemiBold.font(size: 15)

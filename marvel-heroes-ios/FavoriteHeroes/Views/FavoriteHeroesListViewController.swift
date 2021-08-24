@@ -22,7 +22,7 @@ class FavoriteHeroesListViewController: BaseViewController {
     //MARK: - Variables & Constants
     private let viewModel = FavoriteHeroesViewModel()
     
-    lazy var collectionView = HeroListCollectionView()
+    var collectionView = HeroListCollectionView()
     
     private var cellSize: CGFloat {
         return screenSize.width/2.0 - 30.0
